@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Papan Sampah Banyumas | Keterbukaan Harga Sampah Terbuka</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Hide tiny native browser number spinbuttons in favor of 44x44px WCAG stepper buttons */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-900 min-h-screen flex flex-col antialiased selection:bg-emerald-600 selection:text-white">
+
+  <!-- SKIP LINK (WCAG 2.4.1 BYPASS BLOCKS) -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-slate-900 focus:text-white focus:rounded-xl focus:text-xs focus:font-bold focus:shadow-lg">
+    Lewati ke konten utama
+  </a>
+
+  <!-- TOP APP BAR (ACCESSIBLE, STICKY, UNCLUTTERED ON MOBILE & DESKTOP) -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs">
+    <div class="max-w-xl md:max-w-4xl lg:max-w-6xl mx-auto px-3.5 sm:px-6 pt-2.5 pb-2 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <button onclick="openModal('modal-pancasila')" aria-label="Buka Landasan Pancasila dan Temuan Riset Banyumas" class="w-11 h-11 shrink-0 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold shadow-sm hover:bg-slate-800 transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2">
+          <i data-lucide="scale" class="w-5 h-5 text-emerald-400" aria-hidden="true"></i>
+        </button>
+        <div class="min-w-0">
+          <div class="flex items-center gap-1.5">
+            <h1 class="text-[15px] sm:text-base md:text-lg font-bold tracking-tight text-slate-900 truncate">Papan Sampah Banyumas</h1>
+          </div>
+          <div class="flex items-center gap-1.5 mt-0.5 flex-wrap">
+            <button onclick="openModal('modal-pancasila')" class="inline-flex items-center gap-1 text-[11px] bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md border border-emerald-200/90 whitespace-nowrap transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">
+              <span>Sila 4 & 5 • Info Riset</span>
+            </button>
+            <button id="cloud-sync-badge" type="button" onclick="syncFromCloud(true)" title="Klik untuk sinkronisasi ulang dari Google Sheets Cloud" class="inline-flex items-center gap-1 text-[11px] bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-2 py-0.5 rounded-md border border-slate-200 whitespace-nowrap transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+              <span id="cloud-sync-dot" class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+              <span id="cloud-sync-text">Sinkron Cloud...</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <button onclick="openModal('modal-tambah')" class="h-11 px-3.5 shrink-0 whitespace-nowrap bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs sm:text-sm font-semibold shadow-sm flex items-center gap-1.5 transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2">
+        <i data-lucide="plus" class="w-4 h-4 shrink-0" aria-hidden="true"></i>
+        <span>Lapor Lapak</span>
+      </button>
+    </div>
+
+    <!-- NATIVE SEGMENTED TABS (WCAG 44PX TOUCH TARGET, ARIA COMPLIANT) -->
+    <div class="max-w-xl md:max-w-4xl lg:max-w-6xl mx-auto px-3.5 sm:px-6 pb-2.5">
+      <div role="tablist" aria-label="Navigasi Utama" class="bg-slate-100 p-1 rounded-xl flex items-center gap-1 border border-slate-200/80">
+        <button id="tab-btn-lapak" role="tab" aria-selected="true" aria-controls="view-lapak" onclick="switchTab('lapak')" class="flex-1 min-h-[44px] px-2 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 bg-white text-slate-900 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+          <i data-lucide="store" class="w-4 h-4 shrink-0" aria-hidden="true"></i>
+          <span class="truncate">Papan Harga Lapak</span>
+        </button>
+        <button id="tab-btn-hitung" role="tab" aria-selected="false" aria-controls="view-hitung" onclick="switchTab('hitung')" class="flex-1 min-h-[44px] px-2 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+          <i data-lucide="calculator" class="w-4 h-4 shrink-0" aria-hidden="true"></i>
+          <span class="truncate">Estimasi Keuntungan</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER (MOBILE-FIRST + FULL DESKTOP MULTI-COLUMN USABILITY) -->
+  <main id="main-content" class="max-w-xl md:max-w-4xl lg:max-w-6xl mx-auto w-full px-3.5 sm:px-6 py-4 flex-1 flex flex-col gap-4">
+
+    <!-- VIEW 1: DAFTAR LAPAK -->
+    <section id="view-lapak" role="tabpanel" aria-labelledby="tab-btn-lapak" class="flex flex-col gap-3.5">
+      
+      <!-- SEARCH & SORT TOOLBAR (STACKED ON MOBILE, SIDE-BY-SIDE ON DESKTOP) -->
+      <div class="flex flex-col md:flex-row md:items-center gap-2.5">
+        <div class="relative flex-1">
+          <label for="filter-search" class="sr-only">Cari nama lapak, jalan, atau kelurahan</label>
+          <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true"></i>
+          <input type="text" id="filter-search" oninput="renderLapakList()" placeholder="Cari lapak, jalan, atau kelurahan di Banyumas..." class="w-full h-11 pl-10 pr-4 bg-white border border-slate-200/90 rounded-xl text-base sm:text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900 transition shadow-xs">
+        </div>
+
+        <!-- SORTIR CERDAS ANTAR-LAPAK (WCAG 44PX FORM ELEMENT) -->
+        <div class="flex items-center justify-between md:justify-end gap-2 bg-white px-3.5 min-h-[44px] rounded-xl border border-slate-200/90 shadow-xs shrink-0">
+          <span id="lapak-count-info" class="text-xs text-slate-700 font-semibold whitespace-nowrap">Memuat...</span>
+          <span class="text-slate-300" aria-hidden="true">|</span>
+          <div class="flex items-center gap-1.5 min-w-0">
+            <label for="sort-by" class="text-xs text-slate-600 font-medium whitespace-nowrap">Urut:</label>
+            <select id="sort-by" onchange="renderLapakList()" class="h-9 bg-slate-50 border border-slate-200 rounded-lg px-2.5 text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900 cursor-pointer">
+              <option value="leads">Paling Banyak Dihubungi</option>
+              <option value="kardus_desc">Kardus Tertinggi</option>
+              <option value="botol_desc">Botol PET Tertinggi</option>
+              <option value="jelantah_desc">Jelantah Tertinggi</option>
+              <option value="kaleng_desc">Kaleng Tertinggi</option>
+              <option value="kertas_desc">Kertas/Buku Tertinggi</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- FILTER CHIPS (WCAG 44PX TOUCH TARGETS, HORIZONTAL SCROLL ON MOBILE, WRAPPED ON DESKTOP) -->
+      <div role="group" aria-label="Filter Wilayah Kecamatan" class="flex items-center gap-2 overflow-x-auto lg:flex-wrap no-scrollbar py-0.5 -mx-3.5 px-3.5 sm:mx-0 sm:px-0 text-xs font-semibold">
+        <button id="chip-semua" onclick="selectKecamatan('semua')" class="min-h-[44px] px-4 rounded-full bg-slate-900 text-white whitespace-nowrap transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">Semua</button>
+        <button id="chip-jemput" onclick="toggleJemputFilter()" class="min-h-[44px] px-4 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 whitespace-nowrap flex items-center gap-1.5 transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">
+          <i data-lucide="truck" class="w-4 h-4 text-emerald-600 shrink-0" aria-hidden="true"></i>
+          <span>Bisa Jemput</span>
+        </button>
+        <button id="chip-pwt-utara" onclick="selectKecamatan('Purwokerto Utara')" class="min-h-[44px] px-4 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 whitespace-nowrap transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">Pwt Utara</button>
+        <button id="chip-pwt-timur" onclick="selectKecamatan('Purwokerto Timur')" class="min-h-[44px] px-4 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 whitespace-nowrap transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">Pwt Timur</button>
+        <button id="chip-pwt-selatan" onclick="selectKecamatan('Purwokerto Selatan')" class="min-h-[44px] px-4 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 whitespace-nowrap transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">Pwt Selatan</button>
+        <button id="chip-pwt-barat" onclick="selectKecamatan('Purwokerto Barat')" class="min-h-[44px] px-4 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 whitespace-nowrap transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">Pwt Barat</button>
+        <button id="chip-sokaraja" onclick="selectKecamatan('Sokaraja')" class="min-h-[44px] px-4 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 whitespace-nowrap transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">Sokaraja</button>
+      </div>
+
+      <!-- DAFTAR KARTU LAPAK (1 COL MOBILE, 2 COL TABLET, 3 COL DESKTOP) -->
+      <div id="lapak-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- VIEW 2: ESTIMASI KEUNTUNGAN (NO-SCROLL LIVE RESULT + 44PX STEPPER BUTTONS) -->
+    <section id="view-hitung" role="tabpanel" aria-labelledby="tab-btn-hitung" class="hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-start">
+        
+        <!-- PANEL HASIL LANGSUNG DI ATAS PADA MOBILE (STICKY) & KANAN PADA DESKTOP -->
+        <div class="lg:col-span-5 lg:order-2 sticky top-[112px] lg:top-28 z-30">
+          <div class="bg-slate-900 text-white rounded-2xl p-4 sm:p-5 flex flex-col gap-3 shadow-lg border border-slate-800">
+            <div class="flex items-center justify-between gap-2">
+              <div>
+                <span class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block">Taksiran Nilai Tunai</span>
+                <div class="flex items-baseline gap-2 mt-0.5">
+                  <h3 id="calc-total-rp" class="text-2xl sm:text-3xl font-bold text-emerald-400 font-mono leading-none">Rp 0</h3>
+                  <span class="text-xs text-slate-300 font-medium">(<strong id="calc-total-kg" class="text-white">0.0</strong> kg)</span>
+                </div>
+              </div>
+              <button type="button" id="btn-toggle-breakdown" onclick="toggleBreakdown()" class="hidden min-h-[38px] px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-semibold text-emerald-300 border border-slate-700 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+                Rincian ▾
+              </button>
+            </div>
+
+            <!-- REKOMENDASI LAPAK TERBAIK & STATUS JEMPUT -->
+            <div id="calc-rekomendasi" class="text-xs text-slate-200 bg-slate-800/80 px-3 py-2 rounded-xl border border-slate-700/70 leading-relaxed">
+              <span>Ketuk tombol <strong>+</strong> pada komoditas di bawah untuk melihat lapak dengan harga tertinggi.</span>
+            </div>
+
+            <!-- RINCIAN PERHITUNGAN TRANSPARAN (AUDIT BREAKDOWN) -->
+            <div id="calc-breakdown-box" class="hidden bg-slate-800/95 rounded-xl p-3 border border-slate-700 flex flex-col gap-1.5 text-xs text-slate-200">
+              <span class="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Rincian Perhitungan Transparan:</span>
+              <div id="calc-breakdown-items" class="flex flex-col gap-1"></div>
+            </div>
+
+            <button id="calc-hubungi-btn" onclick="hubungiRekomendasi()" disabled class="w-full min-h-[44px] h-11 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">
+              <i data-lucide="message-circle" class="w-4 h-4 shrink-0" aria-hidden="true"></i>
+              <span id="calc-hubungi-label" class="truncate">Masukkan Sampah Terlebih Dahulu</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- PANEL INPUT KOMODITAS DENGAN TOMBOL STEPPER - / + BESAR (WCAG 44x44PX) -->
+        <div class="lg:col-span-7 lg:order-1 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col gap-3">
+          <div class="flex items-center justify-between flex-wrap gap-2 pb-1 border-b border-slate-100">
+            <div>
+              <h2 class="text-sm sm:text-base font-bold text-slate-900">Pilih Jumlah Sampah</h2>
+              <p class="text-xs text-slate-600">Gunakan tombol <strong>− / +</strong> atau ketik langsung.</p>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button type="button" onclick="setSamplePreset()" class="min-h-[40px] px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 rounded-xl text-xs font-semibold transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">
+                ⚡ Contoh (3kg + 20 botol)
+              </button>
+              <button type="button" onclick="resetCalculator()" aria-label="Reset semua angka ke nol" class="min-h-[40px] px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- DAFTAR BARIS INPUT RINGKAS & MUDAH DITAP -->
+          <div class="flex flex-col gap-2.5">
+            
+            <!-- 1. Kardus -->
+            <div class="bg-slate-50/80 p-3 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
+              <div class="min-w-0">
+                <label for="calc-kardus" class="text-xs sm:text-sm font-bold text-slate-900 block">📦 Kardus & Karton</label>
+                <span class="text-xs text-slate-600">~Rp2.200 – Rp2.300 / kg</span>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="stepCalc('calc-kardus', -0.5)" aria-label="Kurangi Kardus 0.5 kg" class="w-11 h-11 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">−</button>
+                <div class="relative">
+                  <input type="number" id="calc-kardus" min="0" step="0.5" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-16 h-11 px-1.5 bg-white border border-slate-300 rounded-xl text-base font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
+                  <span class="block text-[10px] text-center text-slate-500 font-semibold -mt-1">kg</span>
+                </div>
+                <button type="button" onclick="stepCalc('calc-kardus', 0.5)" aria-label="Tambah Kardus 0.5 kg" class="w-11 h-11 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">+</button>
+              </div>
+            </div>
+
+            <!-- 2. Botol Plastik PET -->
+            <div class="bg-slate-50/80 p-3 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
+              <div class="min-w-0">
+                <label for="calc-botol" class="text-xs sm:text-sm font-bold text-slate-900 block">🍶 Botol Plastik PET</label>
+                <div role="group" aria-label="Satuan Botol PET" class="inline-flex items-center bg-slate-200/80 p-0.5 rounded-lg mt-1">
+                  <button id="btn-mode-pcs" type="button" onclick="setBotolMode('pcs')" class="min-h-[28px] px-2.5 rounded-md text-xs font-bold bg-white text-emerald-800 shadow-2xs transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">Buah</button>
+                  <button id="btn-mode-kg" type="button" onclick="setBotolMode('kg')" class="min-h-[28px] px-2.5 rounded-md text-xs font-semibold text-slate-700 hover:text-slate-900 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">Kg</button>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="stepBotol(-1)" aria-label="Kurangi jumlah Botol PET" class="w-11 h-11 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">−</button>
+                <div class="relative">
+                  <input type="number" id="calc-botol" min="0" step="1" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-16 h-11 px-1.5 bg-white border border-slate-300 rounded-xl text-base font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
+                  <span id="label-unit-botol" class="block text-[10px] text-center text-slate-500 font-semibold -mt-1">buah</span>
+                </div>
+                <button type="button" onclick="stepBotol(1)" aria-label="Tambah jumlah Botol PET" class="w-11 h-11 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">+</button>
+              </div>
+            </div>
+
+            <!-- 3. Minyak Jelantah -->
+            <div class="bg-slate-50/80 p-3 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
+              <div class="min-w-0">
+                <label for="calc-jelantah" class="text-xs sm:text-sm font-bold text-slate-900 block">🛢️ Minyak Jelantah</label>
+                <span class="text-xs text-slate-600">~Rp6.000 – Rp7.000 / liter</span>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="stepCalc('calc-jelantah', -0.5)" aria-label="Kurangi Minyak Jelantah 0.5 liter" class="w-11 h-11 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">−</button>
+                <div class="relative">
+                  <input type="number" id="calc-jelantah" min="0" step="0.5" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-16 h-11 px-1.5 bg-white border border-slate-300 rounded-xl text-base font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
+                  <span class="block text-[10px] text-center text-slate-500 font-semibold -mt-1">liter</span>
+                </div>
+                <button type="button" onclick="stepCalc('calc-jelantah', 0.5)" aria-label="Tambah Minyak Jelantah 0.5 liter" class="w-11 h-11 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">+</button>
+              </div>
+            </div>
+
+            <!-- 4. Kaleng Aluminium -->
+            <div class="bg-slate-50/80 p-3 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
+              <div class="min-w-0">
+                <label for="calc-kaleng" class="text-xs sm:text-sm font-bold text-slate-900 block">🥫 Kaleng Aluminium</label>
+                <span class="text-xs text-slate-600">~Rp11.500 – Rp12.500 / kg</span>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="stepCalc('calc-kaleng', -0.5)" aria-label="Kurangi Kaleng 0.5 kg" class="w-11 h-11 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">−</button>
+                <div class="relative">
+                  <input type="number" id="calc-kaleng" min="0" step="0.5" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-16 h-11 px-1.5 bg-white border border-slate-300 rounded-xl text-base font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
+                  <span class="block text-[10px] text-center text-slate-500 font-semibold -mt-1">kg</span>
+                </div>
+                <button type="button" onclick="stepCalc('calc-kaleng', 0.5)" aria-label="Tambah Kaleng 0.5 kg" class="w-11 h-11 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">+</button>
+              </div>
+            </div>
+
+            <!-- 5. Kertas HVS & Buku -->
+            <div class="bg-slate-50/80 p-3 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
+              <div class="min-w-0">
+                <label for="calc-kertas" class="text-xs sm:text-sm font-bold text-slate-900 block">📄 Kertas HVS & Buku</label>
+                <span class="text-xs text-slate-600">~Rp1.700 – Rp1.900 / kg</span>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="stepCalc('calc-kertas', -0.5)" aria-label="Kurangi Kertas 0.5 kg" class="w-11 h-11 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">−</button>
+                <div class="relative">
+                  <input type="number" id="calc-kertas" min="0" step="0.5" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-16 h-11 px-1.5 bg-white border border-slate-300 rounded-xl text-base font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
+                  <span class="block text-[10px] text-center text-slate-500 font-semibold -mt-1">kg</span>
+                </div>
+                <button type="button" onclick="stepCalc('calc-kertas', 0.5)" aria-label="Tambah Kertas 0.5 kg" class="w-11 h-11 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">+</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER MIKRO (BEBAS POTONGAN & ZERO COST) -->
+    <footer class="mt-4 pt-4 border-t border-slate-200 text-center text-xs text-slate-600 flex flex-col gap-1.5 pb-8">
+      <div class="flex items-center justify-center gap-2 flex-wrap">
+        <button onclick="openModal('modal-pancasila')" class="min-h-[36px] px-2 text-emerald-800 font-semibold underline hover:text-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 rounded">
+          Landasan 5 Sila & Data Riset Banyumas
+        </button>
+        <span aria-hidden="true">•</span>
+        <span>Jual-beli tunai langsung di tempat</span>
+      </div>
+      <p class="text-slate-600 text-[11px]">Papan Harga Sampah Terbuka Banyumas • Pengamalan Sila Kelima & Keempat Pancasila</p>
+    </footer>
+
+  </main>
+
+  <!-- MODAL 1: LANDASAN PANCASILA & DATA SURVEI BANYUMAS (TABEL 2 & SURVEI ESAI) -->
+  <div id="modal-pancasila" role="dialog" aria-modal="true" aria-labelledby="modal-pancasila-title" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white w-full max-w-lg rounded-t-2xl sm:rounded-2xl p-5 flex flex-col gap-4 max-h-[88vh] overflow-y-auto shadow-2xl">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+        <div>
+          <h3 id="modal-pancasila-title" class="text-sm md:text-base font-bold text-slate-900">Landasan Nilai & Riset Banyumas</h3>
+          <p class="text-xs text-slate-500">Operasionalisasi 5 Sila & Temuan Kuesioner (Kelompok 4 RPL)</p>
+        </div>
+        <button onclick="closeModal('modal-pancasila')" aria-label="Tutup dialog Pancasila" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+          <i data-lucide="x" class="w-5 h-5" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- TABEL 2 ESAI: OPERASIONALISASI 5 SILA -->
+      <div class="flex flex-col gap-2 text-xs">
+        <span class="text-xs font-bold text-slate-800 uppercase tracking-wider">Pemetaan 5 Sila Pancasila:</span>
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+          <span class="font-bold text-slate-900 block text-xs">1. Ketuhanan Yang Maha Esa</span>
+          <p class="text-slate-600 text-xs mt-0.5">Sampah dipandang sebagai amanah pelestarian bumi, bukan sekadar buangan kotor.</p>
+        </div>
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+          <span class="font-bold text-slate-900 block text-xs">2. Kemanusiaan yang Adil dan Beradab</span>
+          <p class="text-slate-600 text-xs mt-0.5">Warga dan pemulung terlindungi dari jebakan penetapan harga sepihak yang merugikan.</p>
+        </div>
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+          <span class="font-bold text-slate-900 block text-xs">3. Persatuan Indonesia</span>
+          <p class="text-slate-600 text-xs mt-0.5">Menyambungkan warga, bank sampah, pengepul, dan industri daur ulang dalam satu jaringan informasi.</p>
+        </div>
+        <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+          <span class="font-bold text-emerald-900 block text-xs">4. Kerakyatan / Musyawarah (Kunci Sistem)</span>
+          <p class="text-emerald-800 text-xs mt-0.5">Musyawarah dalam bentuk data terbuka: tidak ada pihak penentu tunggal harga; pasar menilai secara transparan.</p>
+        </div>
+        <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+          <span class="font-bold text-emerald-900 block text-xs">5. Keadilan Sosial bagi Seluruh Rakyat (Inti Esai)</span>
+          <p class="text-emerald-800 text-xs mt-0.5">Papan harga terbuka memangkas asimetri informasi agar surplus ekonomi daur ulang dirasakan adil oleh warga.</p>
+        </div>
+      </div>
+
+      <!-- DATA EMPIRIS SURVEI BANYUMAS (N = 81) -->
+      <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs flex flex-col gap-2">
+        <span class="font-bold text-slate-900 text-xs uppercase tracking-wider">Temuan Empiris Survei Banyumas (n = 81):</span>
+        <div class="grid grid-cols-2 gap-2 text-[11px]">
+          <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+            <span class="block text-lg font-bold text-red-600 font-mono">95,1%</span>
+            <span class="text-slate-600">Tidak tahu patokan harga beli sampah per kg di sekitarnya secara tepat.</span>
+          </div>
+          <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+            <span class="block text-lg font-bold text-amber-600 font-mono">87,7%</span>
+            <span class="text-slate-600">Menilai penetapan harga pembeli selama ini sepihak dan tidak adil.</span>
+          </div>
+          <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+            <span class="block text-lg font-bold text-emerald-600 font-mono">80,2%</span>
+            <span class="text-slate-600">Sudah memilah sampah, namun 56,8% belum pernah menjualnya karena demotivasi harga.</span>
+          </div>
+          <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+            <span class="block text-lg font-bold text-slate-900 font-mono">66,7%</span>
+            <span class="text-slate-600">Sangat butuh website perbandingan harga terbuka antar-penampung Banyumas.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AKSI NYATA & ARSITEKTUR KEBERLANJUTAN WEB (GITHUB PAGES) -->
+      <div class="bg-emerald-50/70 p-3.5 rounded-xl border border-emerald-200 text-xs flex flex-col gap-1.5">
+        <span class="font-bold text-emerald-950 text-xs uppercase tracking-wider">Aksi Nyata &amp; Arsitektur Keberlanjutan Web (GitHub Pages):</span>
+        <p class="text-slate-700"><strong>1. Hosting &amp; Sinkronisasi Nirbiaya Tanpa Kunci Rahasia (Zero-Secret):</strong> Berjalan di sisi klien pada <em>GitHub Pages</em> dan menyinkronkan JSON ke <em>Google Sheets</em> melalui <em>serverless proxy Google Apps Script</em> (<code>doGet</code>/<code>doPost</code>) tanpa mengekspos <em>API Key</em> di kode publik (Rp0/bulan).</p>
+        <p class="text-slate-700"><strong>2. Kalkulator Kuota Jemput &amp; Konversi Satuan:</strong> Konversi otomatis botol PET (25 botol &asymp; 1 kg) dan pendeteksi syarat berat minimum jemput gratis (5–10 kg).</p>
+        <p class="text-slate-700"><strong>3. Moderasi Komunitas Tanpa Login:</strong> Koreksi harga warga berstatus <em>pending</em> kuning hingga disahkan 2 verifikasi perangkat berbeda (<em>device rate-limiting</em>).</p>
+        <p class="text-slate-700"><strong>4. Transparansi Mutu &amp; Audit Trail:</strong> Syarat fisik barang (kering/bersih) dan log perubahan berantai (<em>append-only</em>) mencegah potongan harga sepihak.</p>
+      </div>
+
+      <!-- SUMBER LITERATUR KELEMBAGAAN & HARGA KOMODITAS (TERVERIFIKASI DOI) -->
+      <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs flex flex-col gap-1">
+        <span class="font-bold text-slate-900 text-xs uppercase tracking-wider">Sumber Literatur Kelembagaan & Harga Awal (Seeding):</span>
+        <p class="text-slate-600">• <strong>Bank Sampah Sumampir:</strong> Setiadi &amp; Hilal (2015), <em>Buletin Keslingmas</em>, 34(3), 151–154 (<code class="text-[10px]">10.31983/keslingmas.v34i3.3064</code>).</p>
+        <p class="text-slate-600">• <strong>KSM "Adipati Mersi":</strong> Kurniawan, Hilal, &amp; Cahyono (2019), <em>Buletin Keslingmas</em>, 38(4), 316–327 (<code class="text-[10px]">10.31983/keslingmas.v38i4.5496</code>).</p>
+        <p class="text-slate-600">• <strong>Pengepul Sektor Informal &amp; Selisih Margin (Rp100–Rp400/kg):</strong> Kustanti dkk. (2020), <em>Jurnal Ilmu Lingkungan</em>, 18(3), 495–502 (<code class="text-[10px]">10.14710/jil.18.3.495-502</code>) &amp; Mucholladun, Rifai, &amp; Baslakh (2026), <em>At-Tajir</em>, 3(2), 22–30.</p>
+        <p class="text-slate-600">• <strong>Rentang Harga 5 Komoditas (Kardus, PET, Jelantah, Kaleng, Kertas):</strong> Pambudi dkk. (2025) (<code class="text-[10px]">10.31942/sd.v10i1.13459</code>); Juniabela dkk. (2023) (<code class="text-[10px]">10.36813/jplb.7.1.54-70</code>); Ruslinda (2014) (<code class="text-[10px]">10.25077/dampak.11.2.96-109.2014</code>).</p>
+      </div>
+
+      <!-- PAYUNG HUKUM & SDGS -->
+      <div class="bg-slate-100 p-3 rounded-xl text-xs text-slate-600 flex flex-col gap-1">
+        <span class="font-bold text-slate-800">Landasan Sejarah (CLO 2), Regulasi & SDGs:</span>
+        <p>• Sejarah BPUPKI 1945 (Demokrasi Ekonomi Soekarno–Hatta & Pasal 33 UUD 1945) melawan monopoli informasi tengkulak.</p>
+        <p>• Perda Banyumas No. 6/2012 & Perbup Banyumas No. 24/2023 (Program Sumpah Beruang).</p>
+        <p>• Mendukung <strong>SDG 9</strong> (Infrastruktur Informasi), <strong>SDG 13</strong> (Reduksi Emisi Residu), & <strong>SDG 17</strong> (Kemitraan Warga–KSM–Pengepul).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: LAPOR LAPAK BARU (COMMUNITY CROWDSOURCING) -->
+  <div id="modal-tambah" role="dialog" aria-modal="true" aria-labelledby="modal-tambah-title" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl p-5 flex flex-col gap-3.5 max-h-[90vh] overflow-y-auto shadow-2xl">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+        <div>
+          <h3 id="modal-tambah-title" class="text-sm md:text-base font-bold text-slate-900">Lapor Lapak / Update Harga</h3>
+          <p class="text-xs text-slate-500">Urun daya warga Banyumas (Butuh verifikasi 2 warga).</p>
+        </div>
+        <button onclick="closeModal('modal-tambah')" aria-label="Tutup form lapor lapak" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+          <i data-lucide="x" class="w-5 h-5" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <form id="form-tambah" onsubmit="handleTambahLapak(event)" class="flex flex-col gap-3">
+        <!-- HONEYPOT FIELD (ANTI-BOT) -->
+        <input type="text" id="hp-address" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div>
+          <label for="input-nama" class="block text-xs font-semibold text-slate-700 mb-1">Nama Lapak / Pengepul *</label>
+          <input type="text" id="input-nama" required placeholder="Contoh: Rongsok Berkah Mas Danu" class="w-full h-11 px-3 bg-slate-50 border border-slate-200 rounded-xl text-xs md:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-400">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2.5">
+          <div>
+            <label for="input-kecamatan" class="block text-xs font-semibold text-slate-700 mb-1">Kecamatan *</label>
+            <select id="input-kecamatan" required class="w-full h-11 px-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs md:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-400">
+              <option value="Purwokerto Utara">Purwokerto Utara</option>
+              <option value="Purwokerto Timur">Purwokerto Timur</option>
+              <option value="Purwokerto Selatan">Purwokerto Selatan</option>
+              <option value="Purwokerto Barat">Purwokerto Barat</option>
+              <option value="Sokaraja">Sokaraja</option>
+              <option value="Sumbang">Sumbang</option>
+              <option value="Kembaran">Kembaran</option>
+              <option value="Patikraja">Patikraja</option>
+              <option value="Karanglewas">Karanglewas</option>
+              <option value="Kedungbanteng">Kedungbanteng</option>
+            </select>
+          </div>
+          <div>
+            <label for="input-wa" class="block text-xs font-semibold text-slate-700 mb-1">WhatsApp Aktif *</label>
+            <input type="tel" id="input-wa" required placeholder="08xxxxxxxxxx" class="w-full h-11 px-3 bg-slate-50 border border-slate-200 rounded-xl text-xs md:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-400">
+          </div>
+        </div>
+
+        <div>
+          <label for="input-alamat" class="block text-xs font-semibold text-slate-700 mb-1">Alamat Singkat / Patokan *</label>
+          <input type="text" id="input-alamat" required placeholder="Contoh: Jl. Kampus Grendeng, depan gapura" class="w-full h-11 px-3 bg-slate-50 border border-slate-200 rounded-xl text-xs md:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-400">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2.5 items-center bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
+          <label class="flex items-center gap-2 text-xs text-slate-700 cursor-pointer">
+            <input type="checkbox" id="input-jemput" checked class="w-4 h-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500">
+            <span>Bisa <strong>jemput sampah</strong></span>
+          </label>
+          <div class="flex items-center gap-1.5 justify-end">
+            <label for="input-min-jemput" class="text-[11px] text-slate-500">Min. jemput:</label>
+            <input type="number" id="input-min-jemput" min="1" max="100" value="5" class="w-14 h-8 px-2 bg-white border border-slate-200 rounded-lg text-xs font-bold text-right">
+            <span class="text-[11px] text-slate-500">kg</span>
+          </div>
+        </div>
+
+        <div>
+          <label for="input-syarat-mutu" class="block text-[11px] font-semibold text-slate-600 mb-1">Syarat Standar Fisik Barang (Transparansi Mutu):</label>
+          <input type="text" id="input-syarat-mutu" value="Kering, bersih, terpilah (potongan 10-15% jika basah)" class="w-full h-9 px-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700">
+        </div>
+
+          <!-- INPUT HARGA DENGAN GUARDRAIL LOGIS -->
+        <div class="border-t border-slate-100 pt-2.5 flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-800">Harga Beli Aktual (Standar Kering/Bersih):</span>
+            <span class="text-[11px] text-slate-500">Price Guardrails Aktif</span>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-2.5">
+            <div>
+              <label for="input-harga-kardus" class="block text-[11px] text-slate-500 mb-0.5">Kardus (Rp1.000 - Rp3.500/kg)</label>
+              <input type="number" id="input-harga-kardus" required min="1000" max="3500" placeholder="2200" class="w-full h-10 px-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold">
+            </div>
+            <div>
+              <label for="input-harga-botol" class="block text-[11px] text-slate-500 mb-0.5">Botol PET (Rp2.000 - Rp5.000/kg)</label>
+              <input type="number" id="input-harga-botol" required min="2000" max="5000" placeholder="3500" class="w-full h-10 px-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold">
+            </div>
+            <div>
+              <label for="input-harga-jelantah" class="block text-[11px] text-slate-500 mb-0.5">Jelantah (Rp5.000 - Rp8.500/L)</label>
+              <input type="number" id="input-harga-jelantah" required min="5000" max="8500" placeholder="6500" class="w-full h-10 px-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold">
+            </div>
+            <div>
+              <label for="input-harga-kaleng" class="block text-[11px] text-slate-500 mb-0.5">Kaleng (Rp8.000 - Rp20.000/kg)</label>
+              <input type="number" id="input-harga-kaleng" required min="8000" max="20000" placeholder="12000" class="w-full h-10 px-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold">
+            </div>
+            <div class="col-span-2">
+              <label for="input-harga-kertas" class="block text-[11px] text-slate-500 mb-0.5">Kertas HVS / Buku (Rp1.000 - Rp3.000/kg)</label>
+              <input type="number" id="input-harga-kertas" required min="1000" max="3000" placeholder="1800" class="w-full h-10 px-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold">
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full h-12 mt-1 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs md:text-sm font-semibold shadow-sm transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2">
+          Simpan Laporan Warga
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 3: MENU OPSI LAPAK (BOTTOM SHEET 44PX SENTUHAN) -->
+  <div id="modal-menu" role="dialog" aria-modal="true" aria-labelledby="menu-lapak-nama" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white w-full max-w-sm rounded-t-2xl sm:rounded-2xl p-4 flex flex-col gap-2 shadow-2xl">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+        <h4 id="menu-lapak-nama" class="text-xs font-bold text-slate-900">Opsi Lapak</h4>
+        <button onclick="closeModal('modal-menu')" aria-label="Tutup menu opsi" class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+          <i data-lucide="x" class="w-4 h-4" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="flex flex-col gap-1 text-xs">
+        <button onclick="triggerMenuAction('lapor-beda')" class="h-12 px-3 rounded-xl text-slate-700 hover:bg-slate-50 flex items-center gap-2.5 font-medium transition text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+          <i data-lucide="edit-3" class="w-4 h-4 text-emerald-600" aria-hidden="true"></i>
+          <span>Koreksi / Lapor Harga Berbeda</span>
+        </button>
+        <button onclick="triggerMenuAction('riwayat')" class="h-12 px-3 rounded-xl text-slate-700 hover:bg-slate-50 flex items-center gap-2.5 font-medium transition text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+          <i data-lucide="history" class="w-4 h-4 text-slate-500" aria-hidden="true"></i>
+          <span>Lihat Log Riwayat (Audit Trail)</span>
+        </button>
+        <button onclick="triggerMenuAction('lapor-tutup')" class="h-12 px-3 rounded-xl text-slate-700 hover:bg-slate-50 flex items-center gap-2.5 font-medium transition text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+          <i data-lucide="store-slash" class="w-4 h-4 text-amber-500" aria-hidden="true"></i>
+          <span>Laporkan Lapak Tutup / Alamat Fiktif</span>
+        </button>
+        <button onclick="triggerMenuAction('lapor-doxxing')" class="h-12 px-3 rounded-xl text-red-600 hover:bg-red-50 flex items-center gap-2.5 font-medium transition text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600">
+          <i data-lucide="phone-off" class="w-4 h-4" aria-hidden="true"></i>
+          <span>Bukan Nomor Lapak (Laporkan Doxxing)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 4: RIWAYAT AUDIT TRAIL (APPEND-ONLY) -->
+  <div id="modal-riwayat" role="dialog" aria-modal="true" aria-labelledby="riwayat-title" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white w-full max-w-sm rounded-t-2xl sm:rounded-2xl p-4 flex flex-col gap-3 max-h-[80vh] overflow-y-auto shadow-2xl">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+        <div>
+          <h3 id="riwayat-title" class="text-xs font-bold text-slate-900">Riwayat Berantai (Log)</h3>
+          <p class="text-[10px] text-slate-500">Musyawarah data harga (Append-Only Event Log).</p>
+        </div>
+        <button onclick="closeModal('modal-riwayat')" aria-label="Tutup riwayat log" class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+          <i data-lucide="x" class="w-4 h-4" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div id="riwayat-content" class="flex flex-col gap-2"></div>
+    </div>
+  </div>
+
+  <!-- MODAL 5: KOREKSI BEDA HARGA -->
+  <div id="modal-lapor-beda" role="dialog" aria-modal="true" aria-labelledby="beda-title" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white w-full max-w-sm rounded-t-2xl sm:rounded-2xl p-4 flex flex-col gap-3 shadow-2xl">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+        <div>
+          <h3 id="beda-title" class="text-xs font-bold text-slate-900">Koreksi Harga Lapak</h3>
+          <p class="text-[10px] text-slate-500">Butuh verifikasi 2 warga sebelum disahkan.</p>
+        </div>
+        <button onclick="closeModal('modal-lapor-beda')" aria-label="Tutup koreksi harga" class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+          <i data-lucide="x" class="w-4 h-4" aria-hidden="true"></i>
+        </button>
+      </div>
+      <form onsubmit="handleSimpanLaporBeda(event)" class="flex flex-col gap-2.5 text-xs">
+        <input type="hidden" id="beda-lapak-id">
+        <div>
+          <label for="beda-komoditas" class="block text-xs font-semibold text-slate-700 mb-1">Komoditas yang Berbeda:</label>
+          <select id="beda-komoditas" class="w-full h-11 px-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs">
+            <option value="kardus">Kardus (Rp1.000 - Rp3.500)</option>
+            <option value="botol_bening">Botol PET (Rp2.000 - Rp5.000)</option>
+            <option value="jelantah">Minyak Jelantah (Rp5.000 - Rp8.500)</option>
+            <option value="kaleng">Kaleng Aluminium (Rp8.000 - Rp20.000)</option>
+            <option value="kertas">Kertas / Buku (Rp1.000 - Rp3.000)</option>
+          </select>
+        </div>
+        <div>
+          <label for="beda-harga" class="block text-xs font-semibold text-slate-700 mb-1">Harga Beli Aktual per satuan (Rp):</label>
+          <input type="number" id="beda-harga" required placeholder="Contoh: 2400" class="w-full h-11 px-3 bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs">
+        </div>
+        <button type="submit" class="w-full h-12 mt-1 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-semibold transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2">
+          Simpan Koreksi Komunitas
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST FEEDBACK NOTIFICATION -->
+  <div id="toast" role="status" aria-live="polite" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white text-xs px-4 py-2.5 rounded-full shadow-xl opacity-0 pointer-events-none transition-all duration-200 flex items-center gap-2 whitespace-nowrap">
+    <span id="toast-text">Notifikasi</span>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // DATA SEEDING PROTOTIPE BERBASIS STUDI LITERATUR BANYUMAS & TATA NIAGA DAUR ULANG
+    const SEED_DATA = [
+      {
+        id: "lapak-sumampir",
+        nama: "Bank Sampah Sumampir",
+        tipe: "Unit Komunitas (Studi Literatur)",
+        badge: "dlh",
+        regulasi: "Rujukan: Setiadi & Hilal (2015)",
+        alamat: "Kel. Sumampir (Rujukan Literatur)",
+        kecamatan: "Purwokerto Utara",
+        wa: "6281234567801",
+        jemput: true,
+        min_jemput: 10,
+        leads: 42,
+        trust: 19,
+        laporan_tutup: 0,
+        quarantine: false,
+        status: "aktif",
+        harga: {
+          kardus: 2200,
+          botol_bening: 3500,
+          jelantah: 6500,
+          kaleng: 12000,
+          kertas: 1800
+        },
+        syarat_mutu: "PET bening tanpa tutup/label, kardus kering dilipat, jelantah disaring tanpa endapan",
+        timestamp: "Data Awal Literatur",
+        updated_at: 1793005200000,
+        riwayat: [
+          { tanggal: "Inisiasi Prototipe (2026)", perubahan: "Seeding Literatur: Setiadi & Hilal (2015); Pambudi dkk. (2025); Juniabela dkk. (2023)", harga: "Kardus Rp2.200 | Botol Rp3.500 | Jelantah Rp6.500 | Kaleng Rp12.000 | Kertas Rp1.800", sumber: "Studi Literatur", tipe: "hijau" }
+        ]
+      },
+      {
+        id: "lapak-mersi",
+        nama: "KSM Adipati Mersi",
+        tipe: "Unit KSM (Studi Literatur)",
+        badge: "ksm",
+        regulasi: "Rujukan: Kurniawan dkk. (2019)",
+        alamat: "Kel. Mersi (Rujukan Literatur)",
+        kecamatan: "Purwokerto Timur",
+        wa: "6281234567802",
+        jemput: false,
+        min_jemput: 0,
+        leads: 31,
+        trust: 14,
+        laporan_tutup: 0,
+        quarantine: false,
+        status: "aktif",
+        harga: {
+          kardus: 2100,
+          botol_bening: 3400,
+          jelantah: 6000,
+          kaleng: 11500,
+          kertas: 1700
+        },
+        syarat_mutu: "Terpilah kering per jenis komoditas, bebas sisa organik",
+        timestamp: "Data Awal Literatur",
+        updated_at: 1793003400000,
+        riwayat: [
+          { tanggal: "Inisiasi Prototipe (2026)", perubahan: "Seeding Literatur: Kurniawan dkk. (2019); Kustanti dkk. (2020); Ruslinda (2014)", harga: "Kardus Rp2.100 | Botol Rp3.400 | Jelantah Rp6.000 | Kaleng Rp11.500 | Kertas Rp1.700", sumber: "Studi Literatur", tipe: "hijau" }
+        ]
+      },
+      {
+        id: "lapak-karangklesem",
+        nama: "Pengepul Sektor Informal (Simulasi Berkoh)",
+        tipe: "Pengepul Informal (Studi Literatur)",
+        badge: "owner",
+        regulasi: "Rujukan: Kustanti dkk. (2020) & Mucholladun dkk. (2026)",
+        alamat: "Wilayah Purwokerto Selatan (Simulasi Literatur)",
+        kecamatan: "Purwokerto Selatan",
+        wa: "6281234567803",
+        jemput: true,
+        min_jemput: 5,
+        leads: 58,
+        trust: 27,
+        laporan_tutup: 0,
+        quarantine: false,
+        status: "aktif",
+        harga: {
+          kardus: 2300,
+          botol_bening: 3600,
+          jelantah: 7000,
+          kaleng: 12500,
+          kertas: 1900
+        },
+        syarat_mutu: "Menerima botol berlabel (potong 10-15% jika basah/kotor), kardus & kertas kering",
+        timestamp: "Data Awal Literatur",
+        updated_at: 1793002500000,
+        riwayat: [
+          { tanggal: "Inisiasi Prototipe (2026)", perubahan: "Seeding Literatur: Kustanti dkk. (2020); Mucholladun dkk. (2026); Juniabela dkk. (2023)", harga: "Kardus Rp2.300 | Botol Rp3.600 | Jelantah Rp7.000 | Kaleng Rp12.500 | Kertas Rp1.900", sumber: "Studi Literatur", tipe: "hijau" }
+        ]
+      }
+    ];
+
+    const STORAGE_KEY = "papan_sampah_banyumas_v8";
+    // ZERO-SECRET CLOUD SYNC: Hanya memanggil endpoint serverless proxy Google Apps Script
+    // Tanpa mengekspos Google Cloud API Key (AIza...) maupun Spreadsheet ID di sisi klien.
+    const CLOUD_CONFIG = {
+      ENABLED: true,
+      APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbyyXKIrpz9DqTRHVnMnc6ivuMl-9oZj67qDmvPxM13-HjECDzUOicFgJWoMZRNGVwI/exec"
+    };
+
+    let lapakList = [];
+    let activeKecamatan = "semua";
+    let filterJemputOnly = false;
+    let selectedBestLapak = null;
+    let botolMode = "pcs";
+    let activeMenuLapakId = null;
+
+    function setCloudStatus(state, label) {
+      const dot = document.getElementById('cloud-sync-dot');
+      const text = document.getElementById('cloud-sync-text');
+      if (!dot || !text) return;
+      text.innerText = label;
+      if (state === 'online') {
+        dot.className = "w-1.5 h-1.5 rounded-full bg-emerald-600";
+      } else if (state === 'syncing') {
+        dot.className = "w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse";
+      } else {
+        dot.className = "w-1.5 h-1.5 rounded-full bg-slate-400";
+      }
+    }
+
+    async function fetchCloudLapakList() {
+      if (!CLOUD_CONFIG.ENABLED || !CLOUD_CONFIG.APPS_SCRIPT_URL) return null;
+      const res = await fetch(CLOUD_CONFIG.APPS_SCRIPT_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error(`Apps Script HTTP ${res.status}`);
+      const parsed = await res.json();
+      return Array.isArray(parsed) ? parsed : null;
+    }
+
+    async function pushCloudLapakList(listData) {
+      if (!CLOUD_CONFIG.ENABLED || !CLOUD_CONFIG.APPS_SCRIPT_URL) return;
+      setCloudStatus('syncing', 'Menyimpan Cloud...');
+      try {
+        const res = await fetch(CLOUD_CONFIG.APPS_SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ lapakList: listData })
+        });
+        if (res.ok) {
+          setCloudStatus('online', 'Google Sheets Aktif');
+        } else {
+          setCloudStatus('offline', 'Tersimpan Lokal');
+        }
+      } catch (err) {
+        console.warn("Push Cloud tertunda, data aman di localStorage:", err);
+        setCloudStatus('offline', 'Mode Lokal');
+      }
+    }
+
+    async function syncFromCloud(manual = false) {
+      setCloudStatus('syncing', 'Sinkron Cloud...');
+      try {
+        const cloudList = await fetchCloudLapakList();
+        if (Array.isArray(cloudList) && cloudList.length > 0) {
+          lapakList = cloudList;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(lapakList));
+          renderLapakList();
+          calculateEstimasi();
+          setCloudStatus('online', 'Google Sheets Aktif');
+          if (manual) showToast("Data berhasil disinkronkan dari Google Sheets!");
+        } else if (Array.isArray(cloudList) && cloudList.length === 0) {
+          // Inisiasi awal ke Google Sheets jika sel B2 masih kosong
+          await pushCloudLapakList(lapakList);
+          setCloudStatus('online', 'Google Sheets Aktif');
+        } else {
+          setCloudStatus('offline', 'Mode Lokal');
+        }
+      } catch (err) {
+        console.warn("Gagal sinkronisasi Cloud, menggunakan localStorage:", err);
+        setCloudStatus('offline', 'Mode Lokal');
+        if (manual) showToast("Mode lokal aktif (Cloud tidak terjangkau).");
+      }
+    }
+
+    function initData() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try {
+          lapakList = JSON.parse(stored);
+        } catch (e) {
+          lapakList = SEED_DATA;
+        }
+      } else {
+        lapakList = SEED_DATA;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(lapakList));
+      }
+      renderLapakList();
+      calculateEstimasi();
+      lucide.createIcons();
+
+      // Sinkronisasi asinkron dengan Google Sheets API v4 + Apps Script
+      syncFromCloud(false);
+
+      // Keyboard Accessibility: Close active modal on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          ['modal-pancasila', 'modal-tambah', 'modal-menu', 'modal-riwayat', 'modal-lapor-beda'].forEach(closeModal);
+        }
+      });
+    }
+
+    function saveData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(lapakList));
+      pushCloudLapakList(lapakList);
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toast-text');
+      toastText.innerText = text;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2500);
+    }
+
+    function switchTab(tab) {
+      const viewLapak = document.getElementById('view-lapak');
+      const viewHitung = document.getElementById('view-hitung');
+      const btnLapak = document.getElementById('tab-btn-lapak');
+      const btnHitung = document.getElementById('tab-btn-hitung');
+
+      if (tab === 'lapak') {
+        viewLapak.classList.remove('hidden');
+        viewHitung.classList.add('hidden');
+        btnLapak.setAttribute('aria-selected', 'true');
+        btnHitung.setAttribute('aria-selected', 'false');
+        btnLapak.className = "flex-1 min-h-[44px] px-2 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 bg-white text-slate-900 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900";
+        btnHitung.className = "flex-1 min-h-[44px] px-2 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900";
+      } else {
+        viewLapak.classList.add('hidden');
+        viewHitung.classList.remove('hidden');
+        btnHitung.setAttribute('aria-selected', 'true');
+        btnLapak.setAttribute('aria-selected', 'false');
+        btnHitung.className = "flex-1 min-h-[44px] px-2 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 bg-white text-slate-900 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900";
+        btnLapak.className = "flex-1 min-h-[44px] px-2 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900";
+        calculateEstimasi();
+      }
+    }
+
+    function selectKecamatan(kec) {
+      activeKecamatan = kec;
+      const chips = [
+        { id: 'chip-semua', val: 'semua' },
+        { id: 'chip-pwt-utara', val: 'Purwokerto Utara' },
+        { id: 'chip-pwt-timur', val: 'Purwokerto Timur' },
+        { id: 'chip-pwt-selatan', val: 'Purwokerto Selatan' },
+        { id: 'chip-pwt-barat', val: 'Purwokerto Barat' },
+        { id: 'chip-sokaraja', val: 'Sokaraja' }
+      ];
+
+      chips.forEach(c => {
+        const el = document.getElementById(c.id);
+        if (!el) return;
+        if (c.val === kec) {
+          el.className = "min-h-[44px] px-4 rounded-full bg-slate-900 text-white whitespace-nowrap transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900";
+        } else {
+          el.className = "min-h-[44px] px-4 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 whitespace-nowrap transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900";
+        }
+      });
+
+      renderLapakList();
+    }
+
+    function toggleJemputFilter() {
+      filterJemputOnly = !filterJemputOnly;
+      const el = document.getElementById('chip-jemput');
+      if (filterJemputOnly) {
+        el.className = "min-h-[44px] px-4 rounded-full bg-emerald-700 text-white whitespace-nowrap flex items-center gap-1.5 transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700";
+        el.querySelector('i').classList.remove('text-emerald-600');
+        el.querySelector('i').classList.add('text-white');
+      } else {
+        el.className = "min-h-[44px] px-4 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 whitespace-nowrap flex items-center gap-1.5 transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700";
+        el.querySelector('i').classList.add('text-emerald-600');
+        el.querySelector('i').classList.remove('text-white');
+      }
+      renderLapakList();
+    }
+
+    // RENDER LAPAK DENGAN SORTIR CERDAS & KARTU ANTI-TABRAKAN TEKS
+    function renderLapakList() {
+      const container = document.getElementById('lapak-container');
+      const search = document.getElementById('filter-search').value.toLowerCase();
+      const sortBy = document.getElementById('sort-by').value;
+
+      const filtered = lapakList.filter(l => {
+        if (l.quarantine) return false;
+        if (filterJemputOnly && !l.jemput) return false;
+        if (activeKecamatan !== 'semua' && l.kecamatan !== activeKecamatan) return false;
+        if (search) {
+          const matchNama = l.nama.toLowerCase().includes(search);
+          const matchAlamat = l.alamat.toLowerCase().includes(search);
+          const matchKec = l.kecamatan.toLowerCase().includes(search);
+          if (!matchNama && !matchAlamat && !matchKec) return false;
+        }
+        return true;
+      });
+
+      document.getElementById('lapak-count-info').innerText = `${filtered.length} lapak`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full bg-white p-6 md:p-8 rounded-2xl border border-slate-200/80 text-center flex flex-col items-center gap-2 shadow-xs">
+            <i data-lucide="inbox" class="w-8 h-8 text-slate-400" aria-hidden="true"></i>
+            <p class="text-xs md:text-sm font-semibold text-slate-700">Tidak ada lapak di filter ini.</p>
+            <p class="text-xs text-slate-600">Pilih "Semua" untuk melihat lapak di wilayah kecamatan lain.</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      // SORTING LOGIC
+      filtered.sort((a, b) => {
+        if (sortBy === 'kardus_desc') return (b.harga.kardus || 0) - (a.harga.kardus || 0);
+        if (sortBy === 'botol_desc') return (b.harga.botol_bening || 0) - (a.harga.botol_bening || 0);
+        if (sortBy === 'jelantah_desc') return (b.harga.jelantah || 0) - (a.harga.jelantah || 0);
+        if (sortBy === 'kaleng_desc') return (b.harga.kaleng || 0) - (a.harga.kaleng || 0);
+        if (sortBy === 'kertas_desc') return (b.harga.kertas || 0) - (a.harga.kertas || 0);
+        return (b.leads || 0) - (a.leads || 0);
+      });
+
+      const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+
+      container.innerHTML = filtered.map(l => {
+        const isSuspicious = l.laporan_tutup >= 2;
+        const isCommunity = l.badge === 'warga';
+        const isVerifiedCommunity = isCommunity && (l.trust || 0) >= 2;
+        const isDataStale = l.updated_at ? ((Date.now() - l.updated_at) > THIRTY_DAYS_MS) : false;
+
+        let statusBadge = "";
+        if (isSuspicious) {
+          statusBadge = `<span class="text-[11px] text-red-800 font-semibold bg-red-50 px-2.5 py-0.5 rounded-full border border-red-200 whitespace-nowrap">⚠️ Diduga Tutup</span>`;
+        } else if (l.badge === 'dlh' || l.badge === 'ksm' || l.badge === 'owner') {
+          statusBadge = `<span class="inline-flex items-center gap-1.5 text-[11px] text-emerald-900 font-semibold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/90 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" aria-hidden="true"></span>${l.tipe}</span>`;
+        } else if (isVerifiedCommunity) {
+          statusBadge = `<span class="inline-flex items-center gap-1.5 text-[11px] text-emerald-900 font-semibold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/90 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" aria-hidden="true"></span>Diverifikasi Warga (${l.trust})</span>`;
+        } else {
+          statusBadge = `<span class="inline-flex items-center gap-1.5 text-[11px] text-amber-900 font-semibold bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-300 whitespace-nowrap">Menunggu 2 Verifikasi (${l.trust || 0}/2)</span>`;
+        }
+
+        const staleBadge = isDataStale
+          ? `<span class="inline-flex items-center gap-1 text-[10px] text-amber-900 font-semibold bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200 whitespace-nowrap">⏳ Data >30 Hari</span>`
+          : ``;
+
+        const jemputLabel = l.jemput 
+          ? `<span class="text-emerald-800 font-semibold flex items-center gap-1.5"><i data-lucide="truck" class="w-3.5 h-3.5 shrink-0" aria-hidden="true"></i> Jemput min. ${l.min_jemput || 5}kg</span>`
+          : `<span class="text-slate-600 font-medium flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 shrink-0" aria-hidden="true"></i> Setor di lokasi</span>`;
+
+        return `
+          <article class="bg-white rounded-2xl border ${isSuspicious ? 'border-red-200 bg-red-50/20' : 'border-slate-200/90'} p-4 flex flex-col gap-3 shadow-xs hover:shadow-md transition-shadow">
+            
+            <!-- HEADER KARTU: BARIS STATUS DI ATAS, NAMA LAPAK PENUH TANPA TERHIMPIT -->
+            <div class="flex flex-col gap-1.5">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  ${statusBadge}
+                  ${staleBadge}
+                </div>
+                <span class="text-[11px] text-slate-600 font-medium whitespace-nowrap bg-slate-100 px-2 py-0.5 rounded-md flex items-center gap-1">
+                  <i data-lucide="clock" class="w-3 h-3 text-slate-500 shrink-0" aria-hidden="true"></i> ${l.timestamp || 'Hari ini'}
+                </span>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-slate-900 leading-snug">${l.nama}</h3>
+                <p class="text-xs text-slate-600 mt-0.5">${l.alamat} • <strong class="text-slate-800 font-semibold">${l.kecamatan}</strong></p>
+              </div>
+            </div>
+
+            <!-- METADATA STRIP -->
+            <div class="flex items-center justify-between gap-2 text-xs py-1.5 border-y border-slate-100 text-slate-700">
+              ${jemputLabel}
+              <span class="text-xs text-slate-700 whitespace-nowrap">🔥 <strong>${l.leads}</strong> kontak</span>
+            </div>
+
+            <!-- DISPLAY HARGA: TILE GRID RAPI (BEBAS TABRAKAN TEKS DI LAYAR IPHONE) -->
+            <div class="grid grid-cols-2 gap-2">
+              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex flex-col justify-between">
+                <span class="text-[11px] font-medium text-slate-600">📦 Kardus</span>
+                <span class="text-sm font-bold text-slate-900 font-mono whitespace-nowrap mt-0.5">Rp ${l.harga.kardus.toLocaleString('id-ID')}<span class="font-normal text-slate-500 text-[11px]">/kg</span></span>
+              </div>
+              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex flex-col justify-between">
+                <span class="text-[11px] font-medium text-slate-600">🍶 Botol PET</span>
+                <span class="text-sm font-bold text-slate-900 font-mono whitespace-nowrap mt-0.5">Rp ${l.harga.botol_bening.toLocaleString('id-ID')}<span class="font-normal text-slate-500 text-[11px]">/kg</span></span>
+              </div>
+              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex flex-col justify-between">
+                <span class="text-[11px] font-medium text-slate-600">🛢️ Minyak Jelantah</span>
+                <span class="text-sm font-bold text-slate-900 font-mono whitespace-nowrap mt-0.5">Rp ${(l.harga.jelantah || 6500).toLocaleString('id-ID')}<span class="font-normal text-slate-500 text-[11px]">/L</span></span>
+              </div>
+              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex flex-col justify-between">
+                <span class="text-[11px] font-medium text-slate-600">🥫 Kaleng Aluminium</span>
+                <span class="text-sm font-bold text-slate-900 font-mono whitespace-nowrap mt-0.5">Rp ${l.harga.kaleng.toLocaleString('id-ID')}<span class="font-normal text-slate-500 text-[11px]">/kg</span></span>
+              </div>
+              <div class="col-span-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200/60 flex items-center justify-between gap-2">
+                <span class="text-xs font-medium text-slate-600">📄 Kertas HVS / Buku</span>
+                <span class="text-sm font-bold text-slate-900 font-mono whitespace-nowrap">Rp ${(l.harga.kertas || 1800).toLocaleString('id-ID')}<span class="font-normal text-slate-500 text-[11px]">/kg</span></span>
+              </div>
+            </div>
+
+            <!-- STANDAR MUTU BOX -->
+            <div class="bg-emerald-50/50 px-3 py-2 rounded-xl border border-emerald-200/60 text-[11px] text-slate-700 flex items-start gap-2 leading-relaxed">
+              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" aria-hidden="true"></i>
+              <span><strong class="text-slate-900">Standar Mutu:</strong> ${l.syarat_mutu || 'Terpilah kering & bersih per komoditas'}</span>
+            </div>
+
+            ${l.pending_koreksi ? `
+            <div class="bg-amber-50 border border-amber-300 rounded-xl px-3 py-2.5 text-xs text-amber-950 flex items-center justify-between gap-2">
+              <span>🟡 <strong>Usulan Warga:</strong> ${l.pending_koreksi.komoditas.replace('_', ' ').toUpperCase()} Rp${l.pending_koreksi.harga.toLocaleString('id-ID')} (${l.pending_koreksi.votes}/2 verifikasi)</span>
+              <button onclick="handleVerifikasiKoreksi('${l.id}')" class="min-h-[36px] px-3 bg-amber-700 hover:bg-amber-800 text-white font-semibold rounded-lg text-xs whitespace-nowrap">Setuju (+1)</button>
+            </div>` : ''}
+
+            <!-- ACTION BAR (STANDAR SENTUHAN >= 44PX) -->
+            <div class="flex items-center gap-2 pt-0.5 mt-auto">
+              <button onclick="handleHubungiWA('${l.id}')" aria-label="Hubungi WhatsApp ${l.nama}" class="flex-1 min-h-[44px] h-11 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 shadow-xs transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">
+                <i data-lucide="message-circle" class="w-4 h-4 shrink-0" aria-hidden="true"></i>
+                <span class="whitespace-nowrap">Chat WhatsApp</span>
+              </button>
+
+              <!-- TOMBOL VERIFIKASI 1-KLIK WARGA -->
+              <button onclick="handleKonfirmasiHarga('${l.id}')" aria-label="Konfirmasi harga ${l.nama} masih sesuai. Saat ini ${l.trust || 0} suara" class="min-h-[44px] h-11 px-3.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+                <i data-lucide="thumbs-up" class="w-4 h-4 text-emerald-700 shrink-0" aria-hidden="true"></i>
+                <span>${l.trust || 0}</span>
+              </button>
+
+              <!-- MENU OPSI BOTTOM SHEET -->
+              <button onclick="openMenuLapak('${l.id}')" aria-label="Opsi lainnya untuk ${l.nama}" class="min-h-[44px] min-w-[44px] h-11 w-11 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+                <i data-lucide="more-horizontal" class="w-4 h-4" aria-hidden="true"></i>
+              </button>
+            </div>
+
+          </article>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    // MENU BOTTOM SHEET
+    function openMenuLapak(id) {
+      activeMenuLapakId = id;
+      const lapak = lapakList.find(l => l.id === id);
+      if (!lapak) return;
+      document.getElementById('menu-lapak-nama').innerText = lapak.nama;
+      openModal('modal-menu');
+    }
+
+    function triggerMenuAction(action) {
+      const id = activeMenuLapakId;
+      closeModal('modal-menu');
+      if (!id) return;
+
+      if (action === 'lapor-beda') {
+        openLaporBedaModal(id);
+      } else if (action === 'riwayat') {
+        openRiwayatModal(id);
+      } else if (action === 'lapor-tutup') {
+        handleLaporTutup(id);
+      } else if (action === 'lapor-doxxing') {
+        handleLaporDoxxing(id);
+      }
+    }
+
+    // WHATSAPP DUA ARAH DENGAN HANDSHAKE BAKU
+    function handleHubungiWA(id) {
+      const lapak = lapakList.find(l => l.id === id);
+      if (!lapak) return;
+
+      lapak.leads = (lapak.leads || 0) + 1;
+      saveData();
+      renderLapakList();
+
+      const pesan = encodeURIComponent(`Halo ${lapak.nama}, saya menemukan nomor ini di Papan Harga Sampah Banyumas. Apakah benar ini lapak rongsok aktif dan patokan harga kardus Rp${lapak.harga.kardus}/kg masih berlaku? Terima kasih.`);
+      const url = `https://wa.me/${lapak.wa}?text=${pesan}`;
+      window.open(url, '_blank');
+      showToast("Membuka WhatsApp lapak...");
+    }
+
+    // 1-KLIK KONFIRMASI HARGA (DENGAN RATE-LIMIT PER PERANGKAT)
+    function hasDeviceActed(actionKey) {
+      try {
+        const logs = JSON.parse(localStorage.getItem("papan_sampah_device_actions") || "{}");
+        return !!logs[actionKey];
+      } catch (e) { return false; }
+    }
+
+    function markDeviceActed(actionKey) {
+      try {
+        const logs = JSON.parse(localStorage.getItem("papan_sampah_device_actions") || "{}");
+        logs[actionKey] = Date.now();
+        localStorage.setItem("papan_sampah_device_actions", JSON.stringify(logs));
+      } catch (e) {}
+    }
+
+    function handleKonfirmasiHarga(id) {
+      const lapak = lapakList.find(l => l.id === id);
+      if (!lapak) return;
+      if (hasDeviceActed(`trust_${id}`)) {
+        showToast("Perangkat ini sudah memverifikasi lapak ini.");
+        return;
+      }
+      markDeviceActed(`trust_${id}`);
+      lapak.trust = (lapak.trust || 0) + 1;
+      saveData();
+      renderLapakList();
+      if (lapak.badge === 'warga' && lapak.trust >= 2) {
+        showToast("Lapak kini berstatus: Diverifikasi Warga!");
+      } else {
+        showToast("Konfirmasi harga berhasil dicatat (1/perangkat)!");
+      }
+    }
+
+    // LAPOR LAPAK TUTUP (GOOGLE MAPS MODEL + PROTEKSI RATE-LIMIT)
+    function handleLaporTutup(id) {
+      const lapak = lapakList.find(l => l.id === id);
+      if (!lapak) return;
+      if (hasDeviceActed(`tutup_${id}`)) {
+        showToast("Laporan tutup dari perangkat ini sudah tercatat.");
+        return;
+      }
+      markDeviceActed(`tutup_${id}`);
+      lapak.laporan_tutup = (lapak.laporan_tutup || 0) + 1;
+      saveData();
+      renderLapakList();
+      if (lapak.laporan_tutup >= 2) {
+        showToast("Lapak ditandai Diduga Tutup (2 laporan berbeda).");
+      } else {
+        showToast("Laporan dicatat. Butuh 1 verifikasi warga lain.");
+      }
+    }
+
+    // ANTI DOXXING (AUTO QUARANTINE KHUSUS LAPAK NON-RESMI / SANGGAHAN PEMILIK)
+    function handleLaporDoxxing(id) {
+      const lapak = lapakList.find(l => l.id === id);
+      if (!lapak) return;
+      if (lapak.badge === 'dlh' || lapak.badge === 'ksm') {
+        showToast("Unit resmi DLH/KSM dilindungi dari karantina anonim.");
+        return;
+      }
+      if (!confirm("Laporkan bahwa ini BUKAN nomor pengepul? Kontak akan langsung disembunyikan demi keamanan.")) return;
+      lapak.quarantine = true;
+      saveData();
+      renderLapakList();
+      showToast("Kontak diamankan & dikarantina.");
+    }
+
+    // RIWAYAT AUDIT TRAIL (APPEND-ONLY)
+    function openRiwayatModal(id) {
+      const lapak = lapakList.find(l => l.id === id);
+      if (!lapak) return;
+
+      document.getElementById('riwayat-title').innerText = `Riwayat: ${lapak.nama}`;
+      const content = document.getElementById('riwayat-content');
+
+      const logs = lapak.riwayat || [];
+      if (logs.length === 0) {
+        content.innerHTML = `<p class="text-xs text-slate-500">Belum ada riwayat tercatat.</p>`;
+      } else {
+        content.innerHTML = logs.map(log => `
+          <div class="border-l-2 ${log.tipe === 'hijau' ? 'border-emerald-500' : 'border-amber-500'} pl-3 py-1 text-xs">
+            <div class="flex items-center justify-between text-[11px] text-slate-500">
+              <span>${log.tanggal}</span>
+              <span class="font-semibold ${log.tipe === 'hijau' ? 'text-emerald-700' : 'text-amber-700'}">${log.sumber}</span>
+            </div>
+            <p class="font-semibold text-slate-800 mt-0.5">${log.perubahan}</p>
+            <p class="text-[11px] text-slate-500">${log.harga}</p>
+          </div>
+        `).join('');
+      }
+
+      openModal('modal-riwayat');
+      lucide.createIcons();
+    }
+
+    // MODAL LAPOR BEDA
+    function openLaporBedaModal(id) {
+      const lapak = lapakList.find(l => l.id === id);
+      if (!lapak) return;
+      document.getElementById('beda-lapak-id').value = id;
+      document.getElementById('beda-title').innerText = `Koreksi: ${lapak.nama}`;
+      openModal('modal-lapor-beda');
+    }
+
+    function handleSimpanLaporBeda(e) {
+      e.preventDefault();
+      const id = document.getElementById('beda-lapak-id').value;
+      const komoditas = document.getElementById('beda-komoditas').value;
+      const hargaBaru = parseInt(document.getElementById('beda-harga').value);
+
+      const limits = {
+        kardus: [1000, 3500],
+        botol_bening: [2000, 5000],
+        jelantah: [5000, 8500],
+        kaleng: [8000, 20000],
+        kertas: [1000, 3000]
+      };
+      const [min, max] = limits[komoditas];
+      if (hargaBaru < min || hargaBaru > max) {
+        alert(`Harga di luar batas wajar pasar Banyumas (Rp${min.toLocaleString()} - Rp${max.toLocaleString()}).`);
+        return;
+      }
+
+      const lapak = lapakList.find(l => l.id === id);
+      if (!lapak) return;
+
+      if (!lapak.riwayat) lapak.riwayat = [];
+      const namaKomoditas = komoditas.replace('_', ' ').toUpperCase();
+      lapak.riwayat.unshift({
+        tanggal: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) + " WIB",
+        perubahan: `Usulan Koreksi ${namaKomoditas} Rp${hargaBaru.toLocaleString('id-ID')}`,
+        harga: `Status: Laporan Warga (Menunggu 2 Verifikasi)`,
+        sumber: "Warga",
+        tipe: "kuning"
+      });
+
+      // Simpan sebagai usulan kuning (pending_koreksi) dan baru menggantikan harga utama setelah 2 verifikasi
+      lapak.pending_koreksi = {
+        komoditas: komoditas,
+        harga: hargaBaru,
+        votes: 1
+      };
+      markDeviceActed(`koreksi_${id}_${komoditas}_${hargaBaru}`);
+      saveData();
+      renderLapakList();
+      closeModal('modal-lapor-beda');
+      showToast("Usulan koreksi dicatat (1/2 verifikasi)!");
+    }
+
+    function handleVerifikasiKoreksi(id) {
+      const lapak = lapakList.find(l => l.id === id);
+      if (!lapak || !lapak.pending_koreksi) return;
+      const key = `koreksi_${id}_${lapak.pending_koreksi.komoditas}_${lapak.pending_koreksi.harga}`;
+      if (hasDeviceActed(key)) {
+        showToast("Anda sudah memverifikasi usulan koreksi ini.");
+        return;
+      }
+      markDeviceActed(key);
+      lapak.pending_koreksi.votes += 1;
+      if (lapak.pending_koreksi.votes >= 2) {
+        const kom = lapak.pending_koreksi.komoditas;
+        const hrg = lapak.pending_koreksi.harga;
+        lapak.harga[kom] = hrg;
+        lapak.timestamp = "Diverifikasi 2 Warga";
+        lapak.updated_at = Date.now();
+        lapak.riwayat.unshift({
+          tanggal: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) + " WIB",
+          perubahan: `Disahkan: ${kom.replace('_', ' ').toUpperCase()} Rp${hrg.toLocaleString('id-ID')}`,
+          harga: `Status: Sah (Diverifikasi Silang 2 Warga)`,
+          sumber: "Komunitas",
+          tipe: "hijau"
+        });
+        delete lapak.pending_koreksi;
+        showToast("2 Verifikasi tercapai! Harga baru resmi disahkan.");
+      } else {
+        showToast("Verifikasi koreksi dicatat!");
+      }
+      saveData();
+      renderLapakList();
+    }
+
+    // ESTIMASI KEUNTUNGAN DENGAN TOMBOL STEPPER 44PX & PANEL HASIL TANPA SCROLL
+    let breakdownOpen = false;
+
+    function toggleBreakdown() {
+      breakdownOpen = !breakdownOpen;
+      const box = document.getElementById('calc-breakdown-box');
+      const btn = document.getElementById('btn-toggle-breakdown');
+      if (breakdownOpen) {
+        box.classList.remove('hidden');
+        if (btn) btn.innerText = "Tutup Rincian ▴";
+      } else {
+        box.classList.add('hidden');
+        if (btn) btn.innerText = "Rincian ▾";
+      }
+    }
+
+    function stepCalc(inputId, delta) {
+      const el = document.getElementById(inputId);
+      if (!el) return;
+      const current = parseFloat(el.value) || 0;
+      const next = Math.max(0, Math.round((current + delta) * 10) / 10);
+      el.value = next;
+      calculateEstimasi();
+    }
+
+    function stepBotol(dir) {
+      const delta = botolMode === 'pcs' ? (dir * 5) : (dir * 0.5);
+      stepCalc('calc-botol', delta);
+    }
+
+    function resetCalculator() {
+      ['calc-kardus', 'calc-botol', 'calc-jelantah', 'calc-kaleng', 'calc-kertas'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = 0;
+      });
+      breakdownOpen = false;
+      calculateEstimasi();
+      showToast("Kalkulator direset ke 0");
+    }
+
+    function setBotolMode(mode) {
+      botolMode = mode;
+      const btnPcs = document.getElementById('btn-mode-pcs');
+      const btnKg = document.getElementById('btn-mode-kg');
+      const unitLabel = document.getElementById('label-unit-botol');
+
+      if (mode === 'pcs') {
+        btnPcs.className = "min-h-[28px] px-2.5 rounded-md text-xs font-bold bg-white text-emerald-800 shadow-2xs transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700";
+        btnKg.className = "min-h-[28px] px-2.5 rounded-md text-xs font-semibold text-slate-700 hover:text-slate-900 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700";
+        unitLabel.innerText = "buah";
+      } else {
+        btnKg.className = "min-h-[28px] px-2.5 rounded-md text-xs font-bold bg-white text-emerald-800 shadow-2xs transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700";
+        btnPcs.className = "min-h-[28px] px-2.5 rounded-md text-xs font-semibold text-slate-700 hover:text-slate-900 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700";
+        unitLabel.innerText = "kg";
+      }
+      calculateEstimasi();
+    }
+
+    function setSamplePreset() {
+      document.getElementById('calc-kardus').value = 3;
+      setBotolMode('pcs');
+      document.getElementById('calc-botol').value = 20;
+      document.getElementById('calc-jelantah').value = 0;
+      document.getElementById('calc-kaleng').value = 0;
+      document.getElementById('calc-kertas').value = 0;
+      breakdownOpen = true;
+      calculateEstimasi();
+      showToast("Contoh esai dimuat: 3kg kardus & 20 botol");
+    }
+
+    function calculateEstimasi() {
+      const kardusKg = parseFloat(document.getElementById('calc-kardus').value) || 0;
+      const rawBotol = parseFloat(document.getElementById('calc-botol').value) || 0;
+      const botolKg = botolMode === 'pcs' ? (rawBotol * 0.04) : rawBotol;
+      const jelantahL = parseFloat(document.getElementById('calc-jelantah').value) || 0;
+      const kalengKg = parseFloat(document.getElementById('calc-kaleng').value) || 0;
+      const kertasKg = parseFloat(document.getElementById('calc-kertas').value) || 0;
+
+      const totalWeight = kardusKg + botolKg + kalengKg + kertasKg + (jelantahL * 0.9);
+      document.getElementById('calc-total-kg').innerText = totalWeight.toFixed(1);
+
+      let bestPayout = 0;
+      let bestLapak = null;
+
+      const activeLapaks = lapakList.filter(l => !l.quarantine && l.laporan_tutup < 2);
+      
+      activeLapaks.forEach(l => {
+        const payout = (kardusKg * l.harga.kardus) + 
+                       (botolKg * l.harga.botol_bening) + 
+                       (jelantahL * (l.harga.jelantah || 6500)) + 
+                       (kalengKg * l.harga.kaleng) +
+                       (kertasKg * (l.harga.kertas || 1800));
+        if (payout > bestPayout) {
+          bestPayout = payout;
+          bestLapak = l;
+        }
+      });
+
+      selectedBestLapak = bestLapak || activeLapaks[0];
+      document.getElementById('calc-total-rp').innerText = `Rp ${Math.round(bestPayout).toLocaleString('id-ID')}`;
+
+      const recContainer = document.getElementById('calc-rekomendasi');
+      const hubungiBtn = document.getElementById('calc-hubungi-btn');
+      const hubungiLabel = document.getElementById('calc-hubungi-label');
+      const breakdownBox = document.getElementById('calc-breakdown-box');
+      const breakdownItems = document.getElementById('calc-breakdown-items');
+      const toggleBtn = document.getElementById('btn-toggle-breakdown');
+
+      if (totalWeight === 0) {
+        recContainer.innerHTML = `<span>Ketuk tombol <strong>+</strong> pada komoditas di bawah untuk melihat lapak dengan keuntungan tertinggi.</span>`;
+        hubungiBtn.disabled = true;
+        hubungiLabel.innerText = "Masukkan Sampah Terlebih Dahulu";
+        breakdownBox.classList.add('hidden');
+        if (toggleBtn) toggleBtn.classList.add('hidden');
+      } else if (selectedBestLapak) {
+        if (toggleBtn) {
+          toggleBtn.classList.remove('hidden');
+          toggleBtn.innerText = breakdownOpen ? "Tutup Rincian ▴" : "Rincian ▾";
+        }
+        if (breakdownOpen || window.innerWidth >= 1024) {
+          breakdownBox.classList.remove('hidden');
+          if (toggleBtn && window.innerWidth >= 1024) toggleBtn.innerText = "Tutup Rincian ▴";
+        } else {
+          breakdownBox.classList.add('hidden');
+        }
+        let rows = [];
+        if (kardusKg > 0) {
+          const sub = kardusKg * selectedBestLapak.harga.kardus;
+          rows.push(`<div class="flex justify-between"><span>📦 Kardus: ${kardusKg} kg × Rp${selectedBestLapak.harga.kardus.toLocaleString()}</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString()}</span></div>`);
+        }
+        if (rawBotol > 0) {
+          const sub = botolKg * selectedBestLapak.harga.botol_bening;
+          const label = botolMode === 'pcs' ? `${rawBotol} buah (~${botolKg.toFixed(2)} kg)` : `${botolKg} kg`;
+          rows.push(`<div class="flex justify-between"><span>🍶 Botol PET: ${label} × Rp${selectedBestLapak.harga.botol_bening.toLocaleString()}</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString()}</span></div>`);
+        }
+        if (jelantahL > 0) {
+          const sub = jelantahL * (selectedBestLapak.harga.jelantah || 6500);
+          rows.push(`<div class="flex justify-between"><span>🛢️ Minyak Jelantah: ${jelantahL} L × Rp${(selectedBestLapak.harga.jelantah || 6500).toLocaleString()}</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString()}</span></div>`);
+        }
+        if (kalengKg > 0) {
+          const sub = kalengKg * selectedBestLapak.harga.kaleng;
+          rows.push(`<div class="flex justify-between"><span>🥫 Kaleng: ${kalengKg} kg × Rp${selectedBestLapak.harga.kaleng.toLocaleString()}</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString()}</span></div>`);
+        }
+        if (kertasKg > 0) {
+          const sub = kertasKg * (selectedBestLapak.harga.kertas || 1800);
+          rows.push(`<div class="flex justify-between"><span>📄 Kertas/Buku: ${kertasKg} kg × Rp${(selectedBestLapak.harga.kertas || 1800).toLocaleString()}</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString()}</span></div>`);
+        }
+        breakdownItems.innerHTML = rows.join('');
+
+        const minJemput = selectedBestLapak.min_jemput || 0;
+        const jemputNote = selectedBestLapak.jemput
+          ? (totalWeight >= minJemput
+              ? `• 🚚 Memenuhi syarat jemput gratis (≥ ${minJemput} kg)`
+              : `• ⚠️ Kurang ${(minJemput - totalWeight).toFixed(1)} kg untuk jemput gratis (min. ${minJemput} kg — gabung kolektif kos/RT)`)
+          : `• 📍 Setor mandiri ke lokasi`;
+
+        recContainer.innerHTML = `
+          <span>Rekomendasi: <strong class="text-white">${selectedBestLapak.nama}</strong> (${selectedBestLapak.kecamatan}) ${jemputNote}</span>
+        `;
+        hubungiBtn.disabled = false;
+        hubungiLabel.innerText = `Jual Sekarang ke ${selectedBestLapak.nama}`;
+      }
+    }
+
+    function hubungiRekomendasi() {
+      if (!selectedBestLapak) return;
+      const kardusKg = parseFloat(document.getElementById('calc-kardus').value) || 0;
+      const rawBotol = parseFloat(document.getElementById('calc-botol').value) || 0;
+      const botolKg = botolMode === 'pcs' ? (rawBotol * 0.04) : rawBotol;
+      const jelantahL = parseFloat(document.getElementById('calc-jelantah').value) || 0;
+      const kalengKg = parseFloat(document.getElementById('calc-kaleng').value) || 0;
+      const kertasKg = parseFloat(document.getElementById('calc-kertas').value) || 0;
+      const totalWeight = kardusKg + botolKg + kalengKg + kertasKg + (jelantahL * 0.9);
+      const totalRp = document.getElementById('calc-total-rp').innerText;
+
+      const items = [];
+      if (kardusKg > 0) items.push(`Kardus ${kardusKg}kg`);
+      if (rawBotol > 0) items.push(botolMode === 'pcs' ? `Botol PET ${rawBotol} buah (~${botolKg.toFixed(2)}kg)` : `Botol PET ${botolKg}kg`);
+      if (jelantahL > 0) items.push(`Jelantah ${jelantahL}L`);
+      if (kalengKg > 0) items.push(`Kaleng ${kalengKg}kg`);
+      if (kertasKg > 0) items.push(`Kertas/Buku ${kertasKg}kg`);
+
+      selectedBestLapak.leads = (selectedBestLapak.leads || 0) + 1;
+      saveData();
+      renderLapakList();
+
+      const minJemput = selectedBestLapak.min_jemput || 0;
+      const statusJemput = selectedBestLapak.jemput
+        ? (totalWeight >= minJemput ? `Mohon jadwal jemput ke lokasi (total ${totalWeight.toFixed(1)}kg ≥ min. ${minJemput}kg).` : `Saya siap setor langsung ke lokasi atau gabung kolektif kos/RT (total saat ini ${totalWeight.toFixed(1)}kg).`)
+        : `Saya siap setor langsung ke lokasi lapak.`;
+
+      const pesan = encodeURIComponent(`Halo ${selectedBestLapak.nama}, saya menghitung simulasi di Papan Harga Sampah Banyumas:\n- Rincian: ${items.join(', ')}\n- Estimasi Total: ${totalRp} (${totalWeight.toFixed(1)} kg)\n${statusJemput} Apakah harga tersebut masih berlaku? Terima kasih.`);
+      window.open(`https://wa.me/${selectedBestLapak.wa}?text=${pesan}`, '_blank');
+      showToast("Membuka WhatsApp dengan rincian kalkulator...");
+    }
+
+    // MODAL CONTROLS
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      }
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    // TAMBAH LAPAK BARU
+    function handleTambahLapak(e) {
+      e.preventDefault();
+
+      const hp = document.getElementById('hp-address').value;
+      if (hp) {
+        showToast("Terdeteksi bot.");
+        closeModal('modal-tambah');
+        return;
+      }
+
+      const nama = document.getElementById('input-nama').value.trim();
+      const kecamatan = document.getElementById('input-kecamatan').value;
+      let wa = document.getElementById('input-wa').value.replace(/[^0-9]/g, '');
+      if (wa.startsWith('0')) wa = '62' + wa.substring(1);
+
+      const alamat = document.getElementById('input-alamat').value.trim();
+      const jemput = document.getElementById('input-jemput').checked;
+      const minJemputInput = parseInt(document.getElementById('input-min-jemput')?.value) || 5;
+      const syaratMutuInput = (document.getElementById('input-syarat-mutu')?.value || '').trim() || "Terpilah kering & bersih per komoditas";
+
+      const hkardus = parseInt(document.getElementById('input-harga-kardus').value);
+      const hbotol = parseInt(document.getElementById('input-harga-botol').value);
+      const hjelantah = parseInt(document.getElementById('input-harga-jelantah').value);
+      const hkaleng = parseInt(document.getElementById('input-harga-kaleng').value);
+      const hkertas = parseInt(document.getElementById('input-harga-kertas').value) || 1800;
+
+      if (hkardus < 1000 || hkardus > 3500 || hbotol < 2000 || hbotol > 5000 || hjelantah < 5000 || hjelantah > 8500 || hkaleng < 8000 || hkaleng > 20000 || hkertas < 1000 || hkertas > 3000) {
+        alert("Harga di luar rentang pasar wajar Banyumas!");
+        return;
+      }
+
+      const newLapak = {
+        id: "lapak-" + Date.now(),
+        nama: nama,
+        tipe: "Laporan Warga",
+        badge: "warga",
+        regulasi: "Menunggu Verifikasi Warga",
+        alamat: alamat,
+        kecamatan: kecamatan,
+        wa: wa,
+        jemput: jemput,
+        min_jemput: jemput ? minJemputInput : 0,
+        syarat_mutu: syaratMutuInput,
+        leads: 1,
+        trust: 0,
+        laporan_tutup: 0,
+        quarantine: false,
+        status: "aktif",
+        harga: {
+          kardus: hkardus,
+          botol_bening: hbotol,
+          jelantah: hjelantah,
+          kaleng: hkaleng,
+          kertas: hkertas
+        },
+        timestamp: "Baru saja",
+        updated_at: Date.now(),
+        riwayat: [
+          { tanggal: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) + " WIB", perubahan: "Entri Baru Komunitas (Menunggu 2 Verifikasi)", harga: `Kardus Rp${hkardus} | Botol Rp${hbotol} | Jelantah Rp${hjelantah} | Kertas Rp${hkertas}`, sumber: "Warga", tipe: "kuning" }
+        ]
+      };
+
+      lapakList.unshift(newLapak);
+      saveData();
+      renderLapakList();
+      closeModal('modal-tambah');
+      document.getElementById('form-tambah').reset();
+      showToast("Lapak dicatat! Butuh 2 verifikasi warga untuk sah.");
+    }
+
+    window.addEventListener('DOMContentLoaded', initData);
+  </script>
+</body>
+</html>
