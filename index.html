@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Papan Sampah Banyumas | Keterbukaan Harga Sampah Terbuka</title>
+  <!-- Browser Tab Favicon (SVG Scale Emblem) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230f172a'/%3E%3Cg fill='none' stroke='%2334d399' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M32 12v40'/%3E%3Cpath d='M16 22h32'/%3E%3Cpath d='M22 52h20'/%3E%3Cpath d='M16 22l-6 14h12l-6-14z'/%3E%3Cpath d='M48 22l-6 14h12l-6-14z'/%3E%3Cpath d='M10 36a6 6 0 0 0 12 0'/%3E%3Cpath d='M42 36a6 6 0 0 0 12 0'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230f172a'/%3E%3Cg fill='none' stroke='%2334d399' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M32 12v40'/%3E%3Cpath d='M16 22h32'/%3E%3Cpath d='M22 52h20'/%3E%3Cpath d='M16 22l-6 14h12l-6-14z'/%3E%3Cpath d='M48 22l-6 14h12l-6-14z'/%3E%3Cpath d='M10 36a6 6 0 0 0 12 0'/%3E%3Cpath d='M42 36a6 6 0 0 0 12 0'/%3E%3C/g%3E%3C/svg%3E">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Inter -->
@@ -64,25 +67,17 @@
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs">
     <div class="max-w-xl md:max-w-4xl lg:max-w-6xl mx-auto px-3.5 sm:px-6 pt-2.5 pb-2 flex items-center justify-between gap-2">
       <div class="flex items-center gap-2.5 min-w-0">
-        <button onclick="openModal('modal-pancasila')" aria-label="Buka Landasan Pancasila dan Temuan Riset Banyumas" class="w-11 h-11 shrink-0 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold shadow-sm hover:bg-slate-800 transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2">
+        <button onclick="openModal('modal-pancasila')" aria-label="Buka Landasan Pancasila dan Temuan Riset Banyumas" class="w-10 h-10 sm:w-11 sm:h-11 shrink-0 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold shadow-sm hover:bg-slate-800 transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2">
           <i data-lucide="scale" class="w-5 h-5 text-emerald-400" aria-hidden="true"></i>
         </button>
         <div class="min-w-0">
-          <div class="flex items-center gap-1.5">
-            <h1 class="text-[15px] sm:text-base md:text-lg font-bold tracking-tight text-slate-900 truncate">Papan Sampah Banyumas</h1>
-          </div>
-          <div class="flex items-center gap-1.5 mt-0.5 flex-wrap">
-            <button onclick="openModal('modal-pancasila')" class="inline-flex items-center gap-1 text-[11px] bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md border border-emerald-200/90 whitespace-nowrap transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">
-              <span>Sila 4 & 5 • Info Riset</span>
-            </button>
-            <button id="cloud-sync-badge" type="button" onclick="syncFromCloud(true)" title="Klik untuk sinkronisasi ulang dari Google Sheets Cloud" class="inline-flex items-center gap-1 text-[11px] bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-2 py-0.5 rounded-md border border-slate-200 whitespace-nowrap transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
-              <span id="cloud-sync-dot" class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
-              <span id="cloud-sync-text">Sinkron Cloud...</span>
-            </button>
-          </div>
+          <h1 class="text-[15px] sm:text-base md:text-lg font-bold tracking-tight text-slate-900 truncate leading-tight">Papan Sampah Banyumas</h1>
+          <button onclick="openModal('modal-pancasila')" class="mt-0.5 inline-flex items-center gap-1 text-[11px] bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md border border-emerald-200/90 whitespace-nowrap transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">
+            <span>Sila 4 &amp; 5 • Info Riset</span>
+          </button>
         </div>
       </div>
-      <button onclick="openModal('modal-tambah')" class="h-11 px-3.5 shrink-0 whitespace-nowrap bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs sm:text-sm font-semibold shadow-sm flex items-center gap-1.5 transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2">
+      <button onclick="openModal('modal-tambah')" class="h-10 sm:h-11 px-3.5 shrink-0 whitespace-nowrap bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs sm:text-sm font-semibold shadow-sm flex items-center gap-1.5 transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2">
         <i data-lucide="plus" class="w-4 h-4 shrink-0" aria-hidden="true"></i>
         <span>Lapor Lapak</span>
       </button>
@@ -149,150 +144,135 @@
         <button id="chip-sokaraja" onclick="selectKecamatan('Sokaraja')" class="min-h-[44px] px-4 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 whitespace-nowrap transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">Sokaraja</button>
       </div>
 
-      <!-- DAFTAR KARTU LAPAK (1 COL MOBILE, 2 COL TABLET, 3 COL DESKTOP) -->
-      <div id="lapak-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
+      <!-- DAFTAR KARTU LAPAK (1 COL MOBILE, 2 COL TABLET, 3 COL DESKTOP DENGAN TINGGI SERAGAM) -->
+      <div id="lapak-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
         <!-- Rendered by JS -->
       </div>
     </section>
 
-    <!-- VIEW 2: ESTIMASI KEUNTUNGAN (NO-SCROLL LIVE RESULT + 44PX STEPPER BUTTONS) -->
+    <!-- VIEW 2: ESTIMASI KEUNTUNGAN (CLEAN, UNCLUTTERED LAYOUT) -->
     <section id="view-hitung" role="tabpanel" aria-labelledby="tab-btn-hitung" class="hidden">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-start">
         
-        <!-- PANEL HASIL LANGSUNG DI ATAS PADA MOBILE (STICKY) & KANAN PADA DESKTOP -->
-        <div class="lg:col-span-5 lg:order-2 sticky top-[112px] lg:top-28 z-30">
-          <div class="bg-slate-900 text-white rounded-2xl p-4 sm:p-5 flex flex-col gap-3 shadow-lg border border-slate-800">
+        <!-- PANEL HASIL RINGKAS (NON-OVERLAPPING DI MOBILE, STICKY DI DESKTOP KANAN) -->
+        <div class="lg:col-span-5 lg:order-2 lg:sticky lg:top-28">
+          <div class="bg-slate-900 text-white rounded-2xl p-4 sm:p-5 flex flex-col gap-3 shadow-md border border-slate-800">
             <div class="flex items-center justify-between gap-2">
               <div>
-                <span class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block">Taksiran Nilai Tunai</span>
+                <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">Estimasi Nilai Jual</span>
                 <div class="flex items-baseline gap-2 mt-0.5">
                   <h3 id="calc-total-rp" class="text-2xl sm:text-3xl font-bold text-emerald-400 font-mono leading-none">Rp 0</h3>
                   <span class="text-xs text-slate-300 font-medium">(<strong id="calc-total-kg" class="text-white">0.0</strong> kg)</span>
                 </div>
               </div>
-              <button type="button" id="btn-toggle-breakdown" onclick="toggleBreakdown()" class="hidden min-h-[38px] px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-semibold text-emerald-300 border border-slate-700 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+              <button type="button" id="btn-toggle-breakdown" onclick="toggleBreakdown()" class="hidden h-9 px-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-emerald-300 border border-slate-700 whitespace-nowrap transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
                 Rincian ▾
               </button>
             </div>
 
-            <!-- REKOMENDASI LAPAK TERBAIK & STATUS JEMPUT -->
-            <div id="calc-rekomendasi" class="text-xs text-slate-200 bg-slate-800/80 px-3 py-2 rounded-xl border border-slate-700/70 leading-relaxed">
-              <span>Ketuk tombol <strong>+</strong> pada komoditas di bawah untuk melihat lapak dengan harga tertinggi.</span>
+            <!-- REKOMENDASI LAPAK TERBAIK & STATUS JEMPUT (RINGKAS & RAPI) -->
+            <div id="calc-rekomendasi" class="text-xs text-slate-300 bg-slate-800/80 px-3 py-2.5 rounded-xl border border-slate-700/70">
+              <span>Pilih jumlah sampah di bawah untuk cek lapak tertinggi.</span>
             </div>
 
             <!-- RINCIAN PERHITUNGAN TRANSPARAN (AUDIT BREAKDOWN) -->
             <div id="calc-breakdown-box" class="hidden bg-slate-800/95 rounded-xl p-3 border border-slate-700 flex flex-col gap-1.5 text-xs text-slate-200">
-              <span class="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Rincian Perhitungan Transparan:</span>
+              <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Rincian Perhitungan:</span>
               <div id="calc-breakdown-items" class="flex flex-col gap-1"></div>
             </div>
 
-            <button id="calc-hubungi-btn" onclick="hubungiRekomendasi()" disabled class="w-full min-h-[44px] h-11 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">
+            <button id="calc-hubungi-btn" onclick="hubungiRekomendasi()" disabled class="w-full h-11 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">
               <i data-lucide="message-circle" class="w-4 h-4 shrink-0" aria-hidden="true"></i>
-              <span id="calc-hubungi-label" class="truncate">Masukkan Sampah Terlebih Dahulu</span>
+              <span id="calc-hubungi-label" class="truncate">Pilih Sampah Dahulu</span>
             </button>
           </div>
         </div>
 
-        <!-- PANEL INPUT KOMODITAS DENGAN TOMBOL STEPPER - / + BESAR (WCAG 44x44PX) -->
+        <!-- PANEL INPUT KOMODITAS RINGKAS & BERSIH -->
         <div class="lg:col-span-7 lg:order-1 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col gap-3">
-          <div class="flex items-center justify-between flex-wrap gap-2 pb-1 border-b border-slate-100">
-            <div>
-              <h2 class="text-sm sm:text-base font-bold text-slate-900">Pilih Jumlah Sampah</h2>
-              <p class="text-xs text-slate-600">Gunakan tombol <strong>− / +</strong> atau ketik langsung.</p>
-            </div>
-            <div class="flex items-center gap-1.5">
-              <button type="button" onclick="setSamplePreset()" class="min-h-[40px] px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 rounded-xl text-xs font-semibold transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">
-                ⚡ Contoh (3kg + 20 botol)
+          <div class="flex items-center justify-between gap-2 pb-2 border-b border-slate-100">
+            <h2 class="text-sm sm:text-base font-bold text-slate-900">Pilih Jumlah Sampah</h2>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button type="button" onclick="setSamplePreset()" class="h-9 px-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 rounded-lg text-xs font-semibold whitespace-nowrap transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">
+                ⚡ Isi Contoh
               </button>
-              <button type="button" onclick="resetCalculator()" aria-label="Reset semua angka ke nol" class="min-h-[40px] px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
+              <button type="button" onclick="resetCalculator()" aria-label="Reset semua angka ke nol" class="h-9 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">
                 Reset
               </button>
             </div>
           </div>
 
-          <!-- DAFTAR BARIS INPUT RINGKAS & MUDAH DITAP -->
-          <div class="flex flex-col gap-2.5">
+          <!-- DAFTAR BARIS INPUT RINGKAS TANPA TEKS BERTUMPUK -->
+          <div class="flex flex-col gap-2">
             
             <!-- 1. Kardus -->
-            <div class="bg-slate-50/80 p-3 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
+            <div class="bg-slate-50/90 px-3 py-2.5 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
               <div class="min-w-0">
-                <label for="calc-kardus" class="text-xs sm:text-sm font-bold text-slate-900 block">📦 Kardus & Karton</label>
-                <span class="text-xs text-slate-600">~Rp2.200 – Rp2.300 / kg</span>
+                <label for="calc-kardus" class="text-xs sm:text-sm font-bold text-slate-900 block truncate">📦 Kardus &amp; Karton <span class="font-normal text-slate-500">(kg)</span></label>
+                <span class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp2.100–2.300 / kg</span>
               </div>
               <div class="flex items-center gap-1.5 shrink-0">
-                <button type="button" onclick="stepCalc('calc-kardus', -0.5)" aria-label="Kurangi Kardus 0.5 kg" class="w-11 h-11 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">−</button>
-                <div class="relative">
-                  <input type="number" id="calc-kardus" min="0" step="0.5" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-16 h-11 px-1.5 bg-white border border-slate-300 rounded-xl text-base font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
-                  <span class="block text-[10px] text-center text-slate-500 font-semibold -mt-1">kg</span>
-                </div>
-                <button type="button" onclick="stepCalc('calc-kardus', 0.5)" aria-label="Tambah Kardus 0.5 kg" class="w-11 h-11 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">+</button>
+                <button type="button" onclick="stepCalc('calc-kardus', -0.5)" aria-label="Kurangi Kardus 0.5 kg" class="w-10 h-10 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-base flex items-center justify-center active:scale-95 transition">−</button>
+                <input type="number" id="calc-kardus" min="0" step="0.5" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-14 h-10 px-1 bg-white border border-slate-300 rounded-xl text-sm font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
+                <button type="button" onclick="stepCalc('calc-kardus', 0.5)" aria-label="Tambah Kardus 0.5 kg" class="w-10 h-10 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base flex items-center justify-center active:scale-95 transition">+</button>
               </div>
             </div>
 
             <!-- 2. Botol Plastik PET -->
-            <div class="bg-slate-50/80 p-3 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
+            <div class="bg-slate-50/90 px-3 py-2.5 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
               <div class="min-w-0">
-                <label for="calc-botol" class="text-xs sm:text-sm font-bold text-slate-900 block">🍶 Botol Plastik PET</label>
-                <div role="group" aria-label="Satuan Botol PET" class="inline-flex items-center bg-slate-200/80 p-0.5 rounded-lg mt-1">
-                  <button id="btn-mode-pcs" type="button" onclick="setBotolMode('pcs')" class="min-h-[28px] px-2.5 rounded-md text-xs font-bold bg-white text-emerald-800 shadow-2xs transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">Buah</button>
-                  <button id="btn-mode-kg" type="button" onclick="setBotolMode('kg')" class="min-h-[28px] px-2.5 rounded-md text-xs font-semibold text-slate-700 hover:text-slate-900 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">Kg</button>
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <label for="calc-botol" class="text-xs sm:text-sm font-bold text-slate-900">🍶 Botol PET</label>
+                  <div role="group" aria-label="Satuan Botol PET" class="inline-flex items-center bg-slate-200/80 p-0.5 rounded-lg">
+                    <button id="btn-mode-pcs" type="button" onclick="setBotolMode('pcs')" class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-white text-emerald-800 shadow-2xs transition">Buah</button>
+                    <button id="btn-mode-kg" type="button" onclick="setBotolMode('kg')" class="px-2 py-0.5 rounded-md text-[11px] font-semibold text-slate-700 hover:text-slate-900 transition">Kg</button>
+                  </div>
                 </div>
+                <span id="label-unit-botol" class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp3.400–3.600 / kg (~25 botol/kg)</span>
               </div>
               <div class="flex items-center gap-1.5 shrink-0">
-                <button type="button" onclick="stepBotol(-1)" aria-label="Kurangi jumlah Botol PET" class="w-11 h-11 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">−</button>
-                <div class="relative">
-                  <input type="number" id="calc-botol" min="0" step="1" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-16 h-11 px-1.5 bg-white border border-slate-300 rounded-xl text-base font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
-                  <span id="label-unit-botol" class="block text-[10px] text-center text-slate-500 font-semibold -mt-1">buah</span>
-                </div>
-                <button type="button" onclick="stepBotol(1)" aria-label="Tambah jumlah Botol PET" class="w-11 h-11 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">+</button>
+                <button type="button" onclick="stepBotol(-1)" aria-label="Kurangi jumlah Botol PET" class="w-10 h-10 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-base flex items-center justify-center active:scale-95 transition">−</button>
+                <input type="number" id="calc-botol" min="0" step="1" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-14 h-10 px-1 bg-white border border-slate-300 rounded-xl text-sm font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
+                <button type="button" onclick="stepBotol(1)" aria-label="Tambah jumlah Botol PET" class="w-10 h-10 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base flex items-center justify-center active:scale-95 transition">+</button>
               </div>
             </div>
 
             <!-- 3. Minyak Jelantah -->
-            <div class="bg-slate-50/80 p-3 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
+            <div class="bg-slate-50/90 px-3 py-2.5 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
               <div class="min-w-0">
-                <label for="calc-jelantah" class="text-xs sm:text-sm font-bold text-slate-900 block">🛢️ Minyak Jelantah</label>
-                <span class="text-xs text-slate-600">~Rp6.000 – Rp7.000 / liter</span>
+                <label for="calc-jelantah" class="text-xs sm:text-sm font-bold text-slate-900 block truncate">🛢️ Minyak Jelantah <span class="font-normal text-slate-500">(L)</span></label>
+                <span class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp6.000–7.000 / liter</span>
               </div>
               <div class="flex items-center gap-1.5 shrink-0">
-                <button type="button" onclick="stepCalc('calc-jelantah', -0.5)" aria-label="Kurangi Minyak Jelantah 0.5 liter" class="w-11 h-11 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">−</button>
-                <div class="relative">
-                  <input type="number" id="calc-jelantah" min="0" step="0.5" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-16 h-11 px-1.5 bg-white border border-slate-300 rounded-xl text-base font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
-                  <span class="block text-[10px] text-center text-slate-500 font-semibold -mt-1">liter</span>
-                </div>
-                <button type="button" onclick="stepCalc('calc-jelantah', 0.5)" aria-label="Tambah Minyak Jelantah 0.5 liter" class="w-11 h-11 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">+</button>
+                <button type="button" onclick="stepCalc('calc-jelantah', -0.5)" aria-label="Kurangi Minyak Jelantah 0.5 liter" class="w-10 h-10 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-base flex items-center justify-center active:scale-95 transition">−</button>
+                <input type="number" id="calc-jelantah" min="0" step="0.5" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-14 h-10 px-1 bg-white border border-slate-300 rounded-xl text-sm font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
+                <button type="button" onclick="stepCalc('calc-jelantah', 0.5)" aria-label="Tambah Minyak Jelantah 0.5 liter" class="w-10 h-10 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base flex items-center justify-center active:scale-95 transition">+</button>
               </div>
             </div>
 
             <!-- 4. Kaleng Aluminium -->
-            <div class="bg-slate-50/80 p-3 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
+            <div class="bg-slate-50/90 px-3 py-2.5 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
               <div class="min-w-0">
-                <label for="calc-kaleng" class="text-xs sm:text-sm font-bold text-slate-900 block">🥫 Kaleng Aluminium</label>
-                <span class="text-xs text-slate-600">~Rp11.500 – Rp12.500 / kg</span>
+                <label for="calc-kaleng" class="text-xs sm:text-sm font-bold text-slate-900 block truncate">🥫 Kaleng Aluminium <span class="font-normal text-slate-500">(kg)</span></label>
+                <span class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp11.500–12.500 / kg</span>
               </div>
               <div class="flex items-center gap-1.5 shrink-0">
-                <button type="button" onclick="stepCalc('calc-kaleng', -0.5)" aria-label="Kurangi Kaleng 0.5 kg" class="w-11 h-11 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">−</button>
-                <div class="relative">
-                  <input type="number" id="calc-kaleng" min="0" step="0.5" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-16 h-11 px-1.5 bg-white border border-slate-300 rounded-xl text-base font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
-                  <span class="block text-[10px] text-center text-slate-500 font-semibold -mt-1">kg</span>
-                </div>
-                <button type="button" onclick="stepCalc('calc-kaleng', 0.5)" aria-label="Tambah Kaleng 0.5 kg" class="w-11 h-11 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">+</button>
+                <button type="button" onclick="stepCalc('calc-kaleng', -0.5)" aria-label="Kurangi Kaleng 0.5 kg" class="w-10 h-10 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-base flex items-center justify-center active:scale-95 transition">−</button>
+                <input type="number" id="calc-kaleng" min="0" step="0.5" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-14 h-10 px-1 bg-white border border-slate-300 rounded-xl text-sm font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
+                <button type="button" onclick="stepCalc('calc-kaleng', 0.5)" aria-label="Tambah Kaleng 0.5 kg" class="w-10 h-10 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base flex items-center justify-center active:scale-95 transition">+</button>
               </div>
             </div>
 
             <!-- 5. Kertas HVS & Buku -->
-            <div class="bg-slate-50/80 p-3 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
+            <div class="bg-slate-50/90 px-3 py-2.5 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
               <div class="min-w-0">
-                <label for="calc-kertas" class="text-xs sm:text-sm font-bold text-slate-900 block">📄 Kertas HVS & Buku</label>
-                <span class="text-xs text-slate-600">~Rp1.700 – Rp1.900 / kg</span>
+                <label for="calc-kertas" class="text-xs sm:text-sm font-bold text-slate-900 block truncate">📄 Kertas HVS &amp; Buku <span class="font-normal text-slate-500">(kg)</span></label>
+                <span class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp1.700–1.900 / kg</span>
               </div>
               <div class="flex items-center gap-1.5 shrink-0">
-                <button type="button" onclick="stepCalc('calc-kertas', -0.5)" aria-label="Kurangi Kertas 0.5 kg" class="w-11 h-11 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900">−</button>
-                <div class="relative">
-                  <input type="number" id="calc-kertas" min="0" step="0.5" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-16 h-11 px-1.5 bg-white border border-slate-300 rounded-xl text-base font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
-                  <span class="block text-[10px] text-center text-slate-500 font-semibold -mt-1">kg</span>
-                </div>
-                <button type="button" onclick="stepCalc('calc-kertas', 0.5)" aria-label="Tambah Kertas 0.5 kg" class="w-11 h-11 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg flex items-center justify-center shadow-2xs active:scale-95 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700">+</button>
+                <button type="button" onclick="stepCalc('calc-kertas', -0.5)" aria-label="Kurangi Kertas 0.5 kg" class="w-10 h-10 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-base flex items-center justify-center active:scale-95 transition">−</button>
+                <input type="number" id="calc-kertas" min="0" step="0.5" value="0" inputmode="decimal" oninput="calculateEstimasi()" class="w-14 h-10 px-1 bg-white border border-slate-300 rounded-xl text-sm font-bold font-mono text-slate-900 text-center focus:outline-none focus:ring-2 focus:ring-slate-900">
+                <button type="button" onclick="stepCalc('calc-kertas', 0.5)" aria-label="Tambah Kertas 0.5 kg" class="w-10 h-10 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base flex items-center justify-center active:scale-95 transition">+</button>
               </div>
             </div>
 
@@ -302,16 +282,19 @@
       </div>
     </section>
 
-    <!-- FOOTER MIKRO (BEBAS POTONGAN & ZERO COST) -->
+    <!-- FOOTER MIKRO (BEBAS POTONGAN, ZERO COST & INDIKATOR CLOUD RINGKAS) -->
     <footer class="mt-4 pt-4 border-t border-slate-200 text-center text-xs text-slate-600 flex flex-col gap-1.5 pb-8">
       <div class="flex items-center justify-center gap-2 flex-wrap">
-        <button onclick="openModal('modal-pancasila')" class="min-h-[36px] px-2 text-emerald-800 font-semibold underline hover:text-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 rounded">
-          Landasan 5 Sila & Data Riset Banyumas
+        <button onclick="openModal('modal-pancasila')" class="min-h-[32px] px-2 text-emerald-800 font-semibold underline hover:text-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 rounded">
+          Landasan 5 Sila &amp; Data Riset Banyumas
         </button>
         <span aria-hidden="true">•</span>
-        <span>Jual-beli tunai langsung di tempat</span>
+        <button id="cloud-sync-badge" type="button" onclick="syncFromCloud(true)" title="Klik untuk muat ulang data dari Google Sheets Cloud" class="inline-flex items-center gap-1.5 text-[11px] bg-white hover:bg-slate-100 text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200/90 whitespace-nowrap transition">
+          <span id="cloud-sync-dot" class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+          <span id="cloud-sync-text">Sinkron Cloud...</span>
+        </button>
       </div>
-      <p class="text-slate-600 text-[11px]">Papan Harga Sampah Terbuka Banyumas • Pengamalan Sila Kelima & Keempat Pancasila</p>
+      <p class="text-slate-500 text-[11px]">Papan Harga Sampah Terbuka Banyumas • Pengamalan Sila Kelima &amp; Keempat Pancasila</p>
     </footer>
 
   </main>
@@ -603,10 +586,10 @@
       {
         id: "lapak-sumampir",
         nama: "Bank Sampah Sumampir",
-        tipe: "Unit Komunitas (Studi Literatur)",
+        tipe: "Unit Komunitas",
         badge: "dlh",
         regulasi: "Rujukan: Setiadi & Hilal (2015)",
-        alamat: "Kel. Sumampir (Rujukan Literatur)",
+        alamat: "Kel. Sumampir (Studi Literatur)",
         kecamatan: "Purwokerto Utara",
         wa: "6281234567801",
         jemput: true,
@@ -624,7 +607,7 @@
           kertas: 1800
         },
         syarat_mutu: "PET bening tanpa tutup/label, kardus kering dilipat, jelantah disaring tanpa endapan",
-        timestamp: "Data Awal Literatur",
+        timestamp: "Studi Literatur",
         updated_at: 1793005200000,
         riwayat: [
           { tanggal: "Inisiasi Prototipe (2026)", perubahan: "Seeding Literatur: Setiadi & Hilal (2015); Pambudi dkk. (2025); Juniabela dkk. (2023)", harga: "Kardus Rp2.200 | Botol Rp3.500 | Jelantah Rp6.500 | Kaleng Rp12.000 | Kertas Rp1.800", sumber: "Studi Literatur", tipe: "hijau" }
@@ -633,10 +616,10 @@
       {
         id: "lapak-mersi",
         nama: "KSM Adipati Mersi",
-        tipe: "Unit KSM (Studi Literatur)",
+        tipe: "Unit KSM",
         badge: "ksm",
         regulasi: "Rujukan: Kurniawan dkk. (2019)",
-        alamat: "Kel. Mersi (Rujukan Literatur)",
+        alamat: "Kel. Mersi (Studi Literatur)",
         kecamatan: "Purwokerto Timur",
         wa: "6281234567802",
         jemput: false,
@@ -654,7 +637,7 @@
           kertas: 1700
         },
         syarat_mutu: "Terpilah kering per jenis komoditas, bebas sisa organik",
-        timestamp: "Data Awal Literatur",
+        timestamp: "Studi Literatur",
         updated_at: 1793003400000,
         riwayat: [
           { tanggal: "Inisiasi Prototipe (2026)", perubahan: "Seeding Literatur: Kurniawan dkk. (2019); Kustanti dkk. (2020); Ruslinda (2014)", harga: "Kardus Rp2.100 | Botol Rp3.400 | Jelantah Rp6.000 | Kaleng Rp11.500 | Kertas Rp1.700", sumber: "Studi Literatur", tipe: "hijau" }
@@ -662,11 +645,11 @@
       },
       {
         id: "lapak-karangklesem",
-        nama: "Pengepul Sektor Informal (Simulasi Berkoh)",
-        tipe: "Pengepul Informal (Studi Literatur)",
+        nama: "Pengepul Sektor Informal",
+        tipe: "Pengepul Informal",
         badge: "owner",
         regulasi: "Rujukan: Kustanti dkk. (2020) & Mucholladun dkk. (2026)",
-        alamat: "Wilayah Purwokerto Selatan (Simulasi Literatur)",
+        alamat: "Simulasi Berkoh (Studi Literatur)",
         kecamatan: "Purwokerto Selatan",
         wa: "6281234567803",
         jemput: true,
@@ -684,7 +667,7 @@
           kertas: 1900
         },
         syarat_mutu: "Menerima botol berlabel (potong 10-15% jika basah/kotor), kardus & kertas kering",
-        timestamp: "Data Awal Literatur",
+        timestamp: "Studi Literatur",
         updated_at: 1793002500000,
         riwayat: [
           { tanggal: "Inisiasi Prototipe (2026)", perubahan: "Seeding Literatur: Kustanti dkk. (2020); Mucholladun dkk. (2026); Juniabela dkk. (2023)", harga: "Kardus Rp2.300 | Botol Rp3.600 | Jelantah Rp7.000 | Kaleng Rp12.500 | Kertas Rp1.900", sumber: "Studi Literatur", tipe: "hijau" }
@@ -692,7 +675,7 @@
       }
     ];
 
-    const STORAGE_KEY = "papan_sampah_banyumas_v8";
+    const STORAGE_KEY = "papan_sampah_banyumas_v9";
     // ZERO-SECRET CLOUD SYNC: Hanya memanggil endpoint serverless proxy Google Apps Script
     // Tanpa mengekspos Google Cloud API Key (AIza...) maupun Spreadsheet ID di sisi klien.
     const CLOUD_CONFIG = {
@@ -932,19 +915,23 @@
         const isVerifiedCommunity = isCommunity && (l.trust || 0) >= 2;
         const isDataStale = l.updated_at ? ((Date.now() - l.updated_at) > THIRTY_DAYS_MS) : false;
 
+        const cleanTipe = (l.tipe || 'Unit Lapak').replace(' (Studi Literatur)', '');
+        const cleanTime = (l.timestamp || 'Hari ini').replace('Data Awal Literatur', 'Studi Literatur');
+        const cleanNama = (l.nama || '').replace(' (Simulasi Berkoh)', '');
+
         let statusBadge = "";
         if (isSuspicious) {
           statusBadge = `<span class="text-[11px] text-red-800 font-semibold bg-red-50 px-2.5 py-0.5 rounded-full border border-red-200 whitespace-nowrap">⚠️ Diduga Tutup</span>`;
         } else if (l.badge === 'dlh' || l.badge === 'ksm' || l.badge === 'owner') {
-          statusBadge = `<span class="inline-flex items-center gap-1.5 text-[11px] text-emerald-900 font-semibold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/90 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" aria-hidden="true"></span>${l.tipe}</span>`;
+          statusBadge = `<span class="inline-flex items-center gap-1.5 text-[11px] text-emerald-900 font-semibold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/90 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" aria-hidden="true"></span>${cleanTipe}</span>`;
         } else if (isVerifiedCommunity) {
           statusBadge = `<span class="inline-flex items-center gap-1.5 text-[11px] text-emerald-900 font-semibold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/90 whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" aria-hidden="true"></span>Diverifikasi Warga (${l.trust})</span>`;
         } else {
-          statusBadge = `<span class="inline-flex items-center gap-1.5 text-[11px] text-amber-900 font-semibold bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-300 whitespace-nowrap">Menunggu 2 Verifikasi (${l.trust || 0}/2)</span>`;
+          statusBadge = `<span class="inline-flex items-center gap-1.5 text-[11px] text-amber-900 font-semibold bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-300 whitespace-nowrap">Menunggu Verifikasi (${l.trust || 0}/2)</span>`;
         }
 
         const staleBadge = isDataStale
-          ? `<span class="inline-flex items-center gap-1 text-[10px] text-amber-900 font-semibold bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200 whitespace-nowrap">⏳ Data >30 Hari</span>`
+          ? `<span class="inline-flex items-center gap-1 text-[10px] text-amber-900 font-semibold bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200 whitespace-nowrap">⏳ >30 Hari</span>`
           : ``;
 
         const jemputLabel = l.jemput 
@@ -952,22 +939,22 @@
           : `<span class="text-slate-600 font-medium flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 shrink-0" aria-hidden="true"></i> Setor di lokasi</span>`;
 
         return `
-          <article class="bg-white rounded-2xl border ${isSuspicious ? 'border-red-200 bg-red-50/20' : 'border-slate-200/90'} p-4 flex flex-col gap-3 shadow-xs hover:shadow-md transition-shadow">
+          <article class="h-full bg-white rounded-2xl border ${isSuspicious ? 'border-red-200 bg-red-50/20' : 'border-slate-200/90'} p-4 flex flex-col gap-3 shadow-xs hover:shadow-md transition-shadow">
             
-            <!-- HEADER KARTU: BARIS STATUS DI ATAS, NAMA LAPAK PENUH TANPA TERHIMPIT -->
+            <!-- HEADER KARTU SERAGAM & RAPI -->
             <div class="flex flex-col gap-1.5">
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <div class="flex items-center gap-1.5 flex-wrap">
+              <div class="flex items-center justify-between gap-1.5">
+                <div class="flex items-center gap-1 min-w-0">
                   ${statusBadge}
                   ${staleBadge}
                 </div>
-                <span class="text-[11px] text-slate-600 font-medium whitespace-nowrap bg-slate-100 px-2 py-0.5 rounded-md flex items-center gap-1">
-                  <i data-lucide="clock" class="w-3 h-3 text-slate-500 shrink-0" aria-hidden="true"></i> ${l.timestamp || 'Hari ini'}
+                <span class="text-[11px] text-slate-600 font-medium whitespace-nowrap bg-slate-100 px-2 py-0.5 rounded-md flex items-center gap-1 shrink-0">
+                  <i data-lucide="clock" class="w-3 h-3 text-slate-500 shrink-0" aria-hidden="true"></i> ${cleanTime}
                 </span>
               </div>
-              <div>
-                <h3 class="text-base font-bold text-slate-900 leading-snug">${l.nama}</h3>
-                <p class="text-xs text-slate-600 mt-0.5">${l.alamat} • <strong class="text-slate-800 font-semibold">${l.kecamatan}</strong></p>
+              <div class="min-h-[44px] flex flex-col justify-center">
+                <h3 class="text-base font-bold text-slate-900 leading-snug truncate" title="${l.nama}">${cleanNama}</h3>
+                <p class="text-xs text-slate-600 mt-0.5 truncate" title="${l.alamat} • ${l.kecamatan}">${l.alamat} • <strong class="text-slate-800 font-semibold">${l.kecamatan}</strong></p>
               </div>
             </div>
 
@@ -977,7 +964,7 @@
               <span class="text-xs text-slate-700 whitespace-nowrap">🔥 <strong>${l.leads}</strong> kontak</span>
             </div>
 
-            <!-- DISPLAY HARGA: TILE GRID RAPI (BEBAS TABRAKAN TEKS DI LAYAR IPHONE) -->
+            <!-- DISPLAY HARGA: TILE GRID RAPI -->
             <div class="grid grid-cols-2 gap-2">
               <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex flex-col justify-between">
                 <span class="text-[11px] font-medium text-slate-600">📦 Kardus</span>
@@ -1001,8 +988,8 @@
               </div>
             </div>
 
-            <!-- STANDAR MUTU BOX -->
-            <div class="bg-emerald-50/50 px-3 py-2 rounded-xl border border-emerald-200/60 text-[11px] text-slate-700 flex items-start gap-2 leading-relaxed">
+            <!-- STANDAR MUTU BOX (FLEX-1 AGAR TINGGI CARD SERAGAM DI DESKTOP) -->
+            <div class="flex-1 bg-emerald-50/50 px-3 py-2 rounded-xl border border-emerald-200/60 text-[11px] text-slate-700 flex items-start gap-2 leading-relaxed">
               <i data-lucide="shield-check" class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" aria-hidden="true"></i>
               <span><strong class="text-slate-900">Standar Mutu:</strong> ${l.syarat_mutu || 'Terpilah kering & bersih per komoditas'}</span>
             </div>
@@ -1308,13 +1295,13 @@
       const unitLabel = document.getElementById('label-unit-botol');
 
       if (mode === 'pcs') {
-        btnPcs.className = "min-h-[28px] px-2.5 rounded-md text-xs font-bold bg-white text-emerald-800 shadow-2xs transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700";
-        btnKg.className = "min-h-[28px] px-2.5 rounded-md text-xs font-semibold text-slate-700 hover:text-slate-900 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700";
-        unitLabel.innerText = "buah";
+        btnPcs.className = "px-2 py-0.5 rounded-md text-[11px] font-bold bg-white text-emerald-800 shadow-2xs transition";
+        btnKg.className = "px-2 py-0.5 rounded-md text-[11px] font-semibold text-slate-700 hover:text-slate-900 transition";
+        if (unitLabel) unitLabel.innerText = "Rp3.400–3.600 / kg (~25 botol/kg)";
       } else {
-        btnKg.className = "min-h-[28px] px-2.5 rounded-md text-xs font-bold bg-white text-emerald-800 shadow-2xs transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700";
-        btnPcs.className = "min-h-[28px] px-2.5 rounded-md text-xs font-semibold text-slate-700 hover:text-slate-900 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700";
-        unitLabel.innerText = "kg";
+        btnKg.className = "px-2 py-0.5 rounded-md text-[11px] font-bold bg-white text-emerald-800 shadow-2xs transition";
+        btnPcs.className = "px-2 py-0.5 rounded-md text-[11px] font-semibold text-slate-700 hover:text-slate-900 transition";
+        if (unitLabel) unitLabel.innerText = "Rp3.400–3.600 / kg (input berat kg)";
       }
       calculateEstimasi();
     }
@@ -1326,9 +1313,8 @@
       document.getElementById('calc-jelantah').value = 0;
       document.getElementById('calc-kaleng').value = 0;
       document.getElementById('calc-kertas').value = 0;
-      breakdownOpen = true;
       calculateEstimasi();
-      showToast("Contoh esai dimuat: 3kg kardus & 20 botol");
+      showToast("Contoh dimuat: 3kg kardus & 20 botol");
     }
 
     function calculateEstimasi() {
@@ -1370,58 +1356,66 @@
       const toggleBtn = document.getElementById('btn-toggle-breakdown');
 
       if (totalWeight === 0) {
-        recContainer.innerHTML = `<span>Ketuk tombol <strong>+</strong> pada komoditas di bawah untuk melihat lapak dengan keuntungan tertinggi.</span>`;
+        recContainer.innerHTML = `<span>Pilih jumlah sampah di bawah untuk cek lapak tertinggi.</span>`;
         hubungiBtn.disabled = true;
-        hubungiLabel.innerText = "Masukkan Sampah Terlebih Dahulu";
+        hubungiLabel.innerText = "Pilih Sampah Dahulu";
         breakdownBox.classList.add('hidden');
         if (toggleBtn) toggleBtn.classList.add('hidden');
       } else if (selectedBestLapak) {
+        const cleanNama = (selectedBestLapak.nama || '').replace(' (Simulasi Berkoh)', '');
         if (toggleBtn) {
           toggleBtn.classList.remove('hidden');
           toggleBtn.innerText = breakdownOpen ? "Tutup Rincian ▴" : "Rincian ▾";
         }
-        if (breakdownOpen || window.innerWidth >= 1024) {
+        if (breakdownOpen) {
           breakdownBox.classList.remove('hidden');
-          if (toggleBtn && window.innerWidth >= 1024) toggleBtn.innerText = "Tutup Rincian ▴";
         } else {
           breakdownBox.classList.add('hidden');
         }
         let rows = [];
         if (kardusKg > 0) {
           const sub = kardusKg * selectedBestLapak.harga.kardus;
-          rows.push(`<div class="flex justify-between"><span>📦 Kardus: ${kardusKg} kg × Rp${selectedBestLapak.harga.kardus.toLocaleString()}</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString()}</span></div>`);
+          rows.push(`<div class="flex justify-between"><span>📦 Kardus (${kardusKg} kg)</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString('id-ID')}</span></div>`);
         }
         if (rawBotol > 0) {
           const sub = botolKg * selectedBestLapak.harga.botol_bening;
-          const label = botolMode === 'pcs' ? `${rawBotol} buah (~${botolKg.toFixed(2)} kg)` : `${botolKg} kg`;
-          rows.push(`<div class="flex justify-between"><span>🍶 Botol PET: ${label} × Rp${selectedBestLapak.harga.botol_bening.toLocaleString()}</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString()}</span></div>`);
+          const label = botolMode === 'pcs' ? `${rawBotol} bh (~${botolKg.toFixed(1)} kg)` : `${botolKg} kg`;
+          rows.push(`<div class="flex justify-between"><span>🍶 Botol PET (${label})</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString('id-ID')}</span></div>`);
         }
         if (jelantahL > 0) {
           const sub = jelantahL * (selectedBestLapak.harga.jelantah || 6500);
-          rows.push(`<div class="flex justify-between"><span>🛢️ Minyak Jelantah: ${jelantahL} L × Rp${(selectedBestLapak.harga.jelantah || 6500).toLocaleString()}</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString()}</span></div>`);
+          rows.push(`<div class="flex justify-between"><span>🛢️ Jelantah (${jelantahL} L)</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString('id-ID')}</span></div>`);
         }
         if (kalengKg > 0) {
           const sub = kalengKg * selectedBestLapak.harga.kaleng;
-          rows.push(`<div class="flex justify-between"><span>🥫 Kaleng: ${kalengKg} kg × Rp${selectedBestLapak.harga.kaleng.toLocaleString()}</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString()}</span></div>`);
+          rows.push(`<div class="flex justify-between"><span>🥫 Kaleng (${kalengKg} kg)</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString('id-ID')}</span></div>`);
         }
         if (kertasKg > 0) {
           const sub = kertasKg * (selectedBestLapak.harga.kertas || 1800);
-          rows.push(`<div class="flex justify-between"><span>📄 Kertas/Buku: ${kertasKg} kg × Rp${(selectedBestLapak.harga.kertas || 1800).toLocaleString()}</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString()}</span></div>`);
+          rows.push(`<div class="flex justify-between"><span>📄 Kertas (${kertasKg} kg)</span><span class="font-mono text-emerald-400 font-bold">Rp${Math.round(sub).toLocaleString('id-ID')}</span></div>`);
         }
         breakdownItems.innerHTML = rows.join('');
 
         const minJemput = selectedBestLapak.min_jemput || 0;
-        const jemputNote = selectedBestLapak.jemput
-          ? (totalWeight >= minJemput
-              ? `• 🚚 Memenuhi syarat jemput gratis (≥ ${minJemput} kg)`
-              : `• ⚠️ Kurang ${(minJemput - totalWeight).toFixed(1)} kg untuk jemput gratis (min. ${minJemput} kg — gabung kolektif kos/RT)`)
-          : `• 📍 Setor mandiri ke lokasi`;
+        let jemputBadge = "";
+        if (selectedBestLapak.jemput) {
+          if (totalWeight >= minJemput) {
+            jemputBadge = `<span class="text-[11px] font-semibold text-emerald-300 bg-emerald-950/90 border border-emerald-700/70 px-2 py-0.5 rounded-md whitespace-nowrap">🚚 Gratis Jemput (≥${minJemput}kg)</span>`;
+          } else {
+            jemputBadge = `<span class="text-[11px] font-medium text-amber-300 bg-amber-950/80 border border-amber-700/60 px-2 py-0.5 rounded-md whitespace-nowrap">Kurang ${(minJemput - totalWeight).toFixed(1)}kg utk jemput</span>`;
+          }
+        } else {
+          jemputBadge = `<span class="text-[11px] font-medium text-slate-300 bg-slate-700/70 px-2 py-0.5 rounded-md whitespace-nowrap">📍 Setor di lokasi</span>`;
+        }
 
         recContainer.innerHTML = `
-          <span>Rekomendasi: <strong class="text-white">${selectedBestLapak.nama}</strong> (${selectedBestLapak.kecamatan}) ${jemputNote}</span>
+          <div class="flex items-center justify-between gap-2 flex-wrap">
+            <span class="truncate">Terbaik: <strong class="text-white">${cleanNama}</strong></span>
+            ${jemputBadge}
+          </div>
         `;
         hubungiBtn.disabled = false;
-        hubungiLabel.innerText = `Jual Sekarang ke ${selectedBestLapak.nama}`;
+        hubungiLabel.innerText = `Hubungi via WhatsApp`;
       }
     }
 
