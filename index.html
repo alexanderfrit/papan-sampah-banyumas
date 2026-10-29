@@ -209,7 +209,7 @@
             <div class="bg-slate-50/90 px-3 py-2.5 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
               <div class="min-w-0">
                 <label for="calc-kardus" class="text-xs sm:text-sm font-bold text-slate-900 block truncate">📦 Kardus &amp; Karton <span class="font-normal text-slate-500">(kg)</span></label>
-                <span class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp2.100–2.300 / kg</span>
+                <span class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp2.100 s.d. Rp2.300 / kg</span>
               </div>
               <div class="flex items-center gap-1.5 shrink-0">
                 <button type="button" onclick="stepCalc('calc-kardus', -0.5)" aria-label="Kurangi Kardus 0.5 kg" class="w-10 h-10 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-base flex items-center justify-center active:scale-95 transition">−</button>
@@ -228,7 +228,7 @@
                     <button id="btn-mode-kg" type="button" onclick="setBotolMode('kg')" class="px-2 py-0.5 rounded-md text-[11px] font-semibold text-slate-700 hover:text-slate-900 transition">Kg</button>
                   </div>
                 </div>
-                <span id="label-unit-botol" class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp3.400–3.600 / kg (~25 botol/kg)</span>
+                <span id="label-unit-botol" class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp3.400 s.d. Rp3.600 / kg (~25 botol/kg)</span>
               </div>
               <div class="flex items-center gap-1.5 shrink-0">
                 <button type="button" onclick="stepBotol(-1)" aria-label="Kurangi jumlah Botol PET" class="w-10 h-10 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-base flex items-center justify-center active:scale-95 transition">−</button>
@@ -241,7 +241,7 @@
             <div class="bg-slate-50/90 px-3 py-2.5 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
               <div class="min-w-0">
                 <label for="calc-jelantah" class="text-xs sm:text-sm font-bold text-slate-900 block truncate">🛢️ Minyak Jelantah <span class="font-normal text-slate-500">(L)</span></label>
-                <span class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp6.000–7.000 / liter</span>
+                <span class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp6.000 s.d. Rp7.000 / liter</span>
               </div>
               <div class="flex items-center gap-1.5 shrink-0">
                 <button type="button" onclick="stepCalc('calc-jelantah', -0.5)" aria-label="Kurangi Minyak Jelantah 0.5 liter" class="w-10 h-10 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-base flex items-center justify-center active:scale-95 transition">−</button>
@@ -254,7 +254,7 @@
             <div class="bg-slate-50/90 px-3 py-2.5 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
               <div class="min-w-0">
                 <label for="calc-kaleng" class="text-xs sm:text-sm font-bold text-slate-900 block truncate">🥫 Kaleng Aluminium <span class="font-normal text-slate-500">(kg)</span></label>
-                <span class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp11.500–12.500 / kg</span>
+                <span class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp11.500 s.d. Rp12.500 / kg</span>
               </div>
               <div class="flex items-center gap-1.5 shrink-0">
                 <button type="button" onclick="stepCalc('calc-kaleng', -0.5)" aria-label="Kurangi Kaleng 0.5 kg" class="w-10 h-10 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-base flex items-center justify-center active:scale-95 transition">−</button>
@@ -267,7 +267,7 @@
             <div class="bg-slate-50/90 px-3 py-2.5 rounded-xl border border-slate-200/80 flex items-center justify-between gap-2">
               <div class="min-w-0">
                 <label for="calc-kertas" class="text-xs sm:text-sm font-bold text-slate-900 block truncate">📄 Kertas HVS &amp; Buku <span class="font-normal text-slate-500">(kg)</span></label>
-                <span class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp1.700–1.900 / kg</span>
+                <span class="text-[11px] text-slate-600 whitespace-nowrap block mt-0.5">Rp1.700 s.d. Rp1.900 / kg</span>
               </div>
               <div class="flex items-center gap-1.5 shrink-0">
                 <button type="button" onclick="stepCalc('calc-kertas', -0.5)" aria-label="Kurangi Kertas 0.5 kg" class="w-10 h-10 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-base flex items-center justify-center active:scale-95 transition">−</button>
@@ -360,30 +360,38 @@
         </div>
       </div>
 
-      <!-- AKSI NYATA & ARSITEKTUR KEBERLANJUTAN WEB (GITHUB PAGES) -->
+      <!-- AKSI NYATA & ARSITEKTUR KEBERLANJUTAN WEB (SERVERLESS SPA) -->
       <div class="bg-emerald-50/70 p-3.5 rounded-xl border border-emerald-200 text-xs flex flex-col gap-1.5">
-        <span class="font-bold text-emerald-950 text-xs uppercase tracking-wider">Aksi Nyata &amp; Arsitektur Keberlanjutan Web (GitHub Pages):</span>
-        <p class="text-slate-700"><strong>1. Hosting &amp; Sinkronisasi Nirbiaya Tanpa Kunci Rahasia (Zero-Secret):</strong> Berjalan di sisi klien pada <em>GitHub Pages</em> dan menyinkronkan JSON ke <em>Google Sheets</em> melalui <em>serverless proxy Google Apps Script</em> (<code>doGet</code>/<code>doPost</code>) tanpa mengekspos <em>API Key</em> di kode publik (Rp0/bulan).</p>
-        <p class="text-slate-700"><strong>2. Kalkulator Kuota Jemput &amp; Konversi Satuan:</strong> Konversi otomatis botol PET (25 botol &asymp; 1 kg) dan pendeteksi syarat berat minimum jemput gratis (5–10 kg).</p>
-        <p class="text-slate-700"><strong>3. Moderasi Komunitas Tanpa Login:</strong> Koreksi harga warga berstatus <em>pending</em> kuning hingga disahkan 2 verifikasi perangkat berbeda (<em>device rate-limiting</em>).</p>
-        <p class="text-slate-700"><strong>4. Transparansi Mutu &amp; Audit Trail:</strong> Syarat fisik barang (kering/bersih) dan log perubahan berantai (<em>append-only</em>) mencegah potongan harga sepihak.</p>
+        <span class="font-bold text-emerald-950 text-xs uppercase tracking-wider">Aksi Nyata &amp; Arsitektur Keberlanjutan Web (Serverless SPA):</span>
+        <p class="text-slate-700"><strong>1. Arsitektur Serverless Nirbiaya Tanpa Kunci Rahasia (Zero-Secret):</strong> Aplikasi satu halaman (SPA) di <em>GitHub Pages</em> menyinkronkan JSON ke <em>Google Sheets</em> melalui <em>serverless proxy Google Apps Script</em> (<code>doGet</code>/<code>doPost</code>) tanpa mengekspos <em>API Key</em> di kode publik (Rp0/bulan).</p>
+        <p class="text-slate-700"><strong>2. Adaptasi Pola Crowdsourcing Teruji:</strong> Pelaporan harga sukarela warga ala <em>Waze</em>, tombol konfirmasi harga sesuai satu klik (👍) ala <em>upvote Reddit</em>, serta kuorum laporan tempat tutup ala <em>Google Maps</em>.</p>
+        <p class="text-slate-700"><strong>3. Kalkulator Kuota Jemput &amp; Anti-Spam Kepopuleran:</strong> Konversi otomatis botol PET (25 botol &asymp; 1 kg), pendeteksi syarat berat jemput gratis (5 s.d. 10 kg), serta pembatasan deteksi klik kontak WhatsApp satu kali per perangkat agar urutan kepopuleran tidak dapat dimanipulasi lewat klik berulang.</p>
+        <p class="text-slate-700"><strong>4. Moderasi Komunitas &amp; Audit Trail:</strong> Koreksi harga berstatus <em>pending</em> kuning hingga disahkan 2 verifikasi perangkat berbeda, dilengkapi syarat fisik barang (kering/bersih) dan log perubahan berantai (<em>append-only</em>).</p>
+      </div>
+
+      <!-- EVALUASI KRITIS & KETERBATASAN SISTEM -->
+      <div class="bg-amber-50/70 p-3.5 rounded-xl border border-amber-200 text-xs flex flex-col gap-1">
+        <span class="font-bold text-amber-950 text-xs uppercase tracking-wider">Evaluasi Kritis &amp; Keterbatasan Sistem (Engineering Trade-offs):</span>
+        <p class="text-slate-700">• <strong>Kompromi Tanpa Login vs. Sesi Incognito:</strong> Pembatasan 1 suara per perangkat via <code>localStorage</code> menjaga kemudahan akses 61,7% warga tanpa daftar akun, namun secara teknis masih dapat ditembus via mode penyamaran (<em>incognito</em>), sehingga selalu dibentengi oleh <em>price guardrails</em>.</p>
+        <p class="text-slate-700">• <strong>Konkurensi Google Sheets (Last-Write-Wins):</strong> Penyimpanan JSON gratis pada sel tunggal belum mendukung penguncian transaksi (<em>row locking</em>) jika dua laporan dikirim pada detik yang persis bersamaan.</p>
+        <p class="text-slate-700">• <strong>Verifikasi Fisik di Lokasi:</strong> Harga di web merupakan patokan awal; kesepakatan akhir tetap bergantung pada pemeriksaan fisik (kadar air/kebersihan) saat penimbangan serta keaktifan warga muda membantu memperbarui data pengepul tradisional.</p>
       </div>
 
       <!-- SUMBER LITERATUR KELEMBAGAAN & HARGA KOMODITAS (TERVERIFIKASI DOI) -->
       <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs flex flex-col gap-1">
-        <span class="font-bold text-slate-900 text-xs uppercase tracking-wider">Sumber Literatur Kelembagaan & Harga Awal (Seeding):</span>
-        <p class="text-slate-600">• <strong>Bank Sampah Sumampir:</strong> Setiadi &amp; Hilal (2015), <em>Buletin Keslingmas</em>, 34(3), 151–154 (<code class="text-[10px]">10.31983/keslingmas.v34i3.3064</code>).</p>
-        <p class="text-slate-600">• <strong>KSM "Adipati Mersi":</strong> Kurniawan, Hilal, &amp; Cahyono (2019), <em>Buletin Keslingmas</em>, 38(4), 316–327 (<code class="text-[10px]">10.31983/keslingmas.v38i4.5496</code>).</p>
-        <p class="text-slate-600">• <strong>Pengepul Sektor Informal &amp; Selisih Margin (Rp100–Rp400/kg):</strong> Kustanti dkk. (2020), <em>Jurnal Ilmu Lingkungan</em>, 18(3), 495–502 (<code class="text-[10px]">10.14710/jil.18.3.495-502</code>) &amp; Mucholladun, Rifai, &amp; Baslakh (2026), <em>At-Tajir</em>, 3(2), 22–30.</p>
+        <span class="font-bold text-slate-900 text-xs uppercase tracking-wider">Sumber Literatur Kelembagaan &amp; Harga Awal (Seeding):</span>
+        <p class="text-slate-600">• <strong>Bank Sampah Sumampir:</strong> Setiadi &amp; Hilal (2015), <em>Buletin Keslingmas</em>, 34(3), 151 s.d. 154 (<code class="text-[10px]">10.31983/keslingmas.v34i3.3064</code>).</p>
+        <p class="text-slate-600">• <strong>KSM "Adipati Mersi":</strong> Kurniawan, Hilal, &amp; Cahyono (2019), <em>Buletin Keslingmas</em>, 38(4), 316 s.d. 327 (<code class="text-[10px]">10.31983/keslingmas.v38i4.5496</code>).</p>
+        <p class="text-slate-600">• <strong>Pengepul Sektor Informal &amp; Selisih Margin (Rp100 s.d. Rp400/kg):</strong> Kustanti dkk. (2020), <em>Jurnal Ilmu Lingkungan</em>, 18(3), 495 s.d. 502 (<code class="text-[10px]">10.14710/jil.18.3.495-502</code>) &amp; Mucholladun, Rifai, &amp; Baslakh (2026), <em>At-Tajir</em>, 3(2), 22 s.d. 30.</p>
         <p class="text-slate-600">• <strong>Rentang Harga 5 Komoditas (Kardus, PET, Jelantah, Kaleng, Kertas):</strong> Pambudi dkk. (2025) (<code class="text-[10px]">10.31942/sd.v10i1.13459</code>); Juniabela dkk. (2023) (<code class="text-[10px]">10.36813/jplb.7.1.54-70</code>); Ruslinda (2014) (<code class="text-[10px]">10.25077/dampak.11.2.96-109.2014</code>).</p>
       </div>
 
       <!-- PAYUNG HUKUM & SDGS -->
       <div class="bg-slate-100 p-3 rounded-xl text-xs text-slate-600 flex flex-col gap-1">
-        <span class="font-bold text-slate-800">Landasan Sejarah (CLO 2), Regulasi & SDGs:</span>
-        <p>• Sejarah BPUPKI 1945 (Demokrasi Ekonomi Soekarno–Hatta & Pasal 33 UUD 1945) melawan monopoli informasi tengkulak.</p>
-        <p>• Perda Banyumas No. 6/2012 & Perbup Banyumas No. 24/2023 (Program Sumpah Beruang).</p>
-        <p>• Mendukung <strong>SDG 9</strong> (Infrastruktur Informasi), <strong>SDG 13</strong> (Reduksi Emisi Residu), & <strong>SDG 17</strong> (Kemitraan Warga–KSM–Pengepul).</p>
+        <span class="font-bold text-slate-800">Landasan Sejarah (CLO 2), Regulasi &amp; SDGs:</span>
+        <p>• Sejarah BPUPKI 1945 (Demokrasi Ekonomi Soekarno dan Hatta serta Pasal 33 UUD 1945) melawan monopoli informasi tengkulak.</p>
+        <p>• Perda Banyumas No. 6/2012 &amp; Perbup Banyumas No. 24/2023 (Program Sumpah Beruang).</p>
+        <p>• Mendukung <strong>SDG 9</strong> (Infrastruktur Informasi), <strong>SDG 13</strong> (Reduksi Emisi Residu), &amp; <strong>SDG 17</strong> (Kemitraan Warga, KSM, dan Pengepul).</p>
       </div>
     </div>
   </div>
@@ -451,7 +459,7 @@
 
         <div>
           <label for="input-syarat-mutu" class="block text-[11px] font-semibold text-slate-600 mb-1">Syarat Standar Fisik Barang (Transparansi Mutu):</label>
-          <input type="text" id="input-syarat-mutu" value="Kering, bersih, terpilah (potongan 10-15% jika basah)" class="w-full h-9 px-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700">
+          <input type="text" id="input-syarat-mutu" value="Kering, bersih, terpilah (potongan 10 s.d. 15% jika basah)" class="w-full h-9 px-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700">
         </div>
 
           <!-- INPUT HARGA DENGAN GUARDRAIL LOGIS -->
@@ -463,23 +471,23 @@
           
           <div class="grid grid-cols-2 gap-2.5">
             <div>
-              <label for="input-harga-kardus" class="block text-[11px] text-slate-500 mb-0.5">Kardus (Rp1.000 - Rp3.500/kg)</label>
+              <label for="input-harga-kardus" class="block text-[11px] text-slate-500 mb-0.5">Kardus (Rp1.000 s.d. Rp3.500/kg)</label>
               <input type="number" id="input-harga-kardus" required min="1000" max="3500" placeholder="2200" class="w-full h-10 px-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold">
             </div>
             <div>
-              <label for="input-harga-botol" class="block text-[11px] text-slate-500 mb-0.5">Botol PET (Rp2.000 - Rp5.000/kg)</label>
+              <label for="input-harga-botol" class="block text-[11px] text-slate-500 mb-0.5">Botol PET (Rp2.000 s.d. Rp5.000/kg)</label>
               <input type="number" id="input-harga-botol" required min="2000" max="5000" placeholder="3500" class="w-full h-10 px-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold">
             </div>
             <div>
-              <label for="input-harga-jelantah" class="block text-[11px] text-slate-500 mb-0.5">Jelantah (Rp5.000 - Rp8.500/L)</label>
+              <label for="input-harga-jelantah" class="block text-[11px] text-slate-500 mb-0.5">Jelantah (Rp5.000 s.d. Rp8.500/L)</label>
               <input type="number" id="input-harga-jelantah" required min="5000" max="8500" placeholder="6500" class="w-full h-10 px-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold">
             </div>
             <div>
-              <label for="input-harga-kaleng" class="block text-[11px] text-slate-500 mb-0.5">Kaleng (Rp8.000 - Rp20.000/kg)</label>
+              <label for="input-harga-kaleng" class="block text-[11px] text-slate-500 mb-0.5">Kaleng (Rp8.000 s.d. Rp20.000/kg)</label>
               <input type="number" id="input-harga-kaleng" required min="8000" max="20000" placeholder="12000" class="w-full h-10 px-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold">
             </div>
             <div class="col-span-2">
-              <label for="input-harga-kertas" class="block text-[11px] text-slate-500 mb-0.5">Kertas HVS / Buku (Rp1.000 - Rp3.000/kg)</label>
+              <label for="input-harga-kertas" class="block text-[11px] text-slate-500 mb-0.5">Kertas HVS / Buku (Rp1.000 s.d. Rp3.000/kg)</label>
               <input type="number" id="input-harga-kertas" required min="1000" max="3000" placeholder="1800" class="w-full h-10 px-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold">
             </div>
           </div>
@@ -556,11 +564,11 @@
         <div>
           <label for="beda-komoditas" class="block text-xs font-semibold text-slate-700 mb-1">Komoditas yang Berbeda:</label>
           <select id="beda-komoditas" class="w-full h-11 px-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs">
-            <option value="kardus">Kardus (Rp1.000 - Rp3.500)</option>
-            <option value="botol_bening">Botol PET (Rp2.000 - Rp5.000)</option>
-            <option value="jelantah">Minyak Jelantah (Rp5.000 - Rp8.500)</option>
-            <option value="kaleng">Kaleng Aluminium (Rp8.000 - Rp20.000)</option>
-            <option value="kertas">Kertas / Buku (Rp1.000 - Rp3.000)</option>
+            <option value="kardus">Kardus (Rp1.000 s.d. Rp3.500)</option>
+            <option value="botol_bening">Botol PET (Rp2.000 s.d. Rp5.000)</option>
+            <option value="jelantah">Minyak Jelantah (Rp5.000 s.d. Rp8.500)</option>
+            <option value="kaleng">Kaleng Aluminium (Rp8.000 s.d. Rp20.000)</option>
+            <option value="kertas">Kertas / Buku (Rp1.000 s.d. Rp3.000)</option>
           </select>
         </div>
         <div>
@@ -666,7 +674,7 @@
           kaleng: 12500,
           kertas: 1900
         },
-        syarat_mutu: "Menerima botol berlabel (potong 10-15% jika basah/kotor), kardus & kertas kering",
+        syarat_mutu: "Menerima botol berlabel (potongan 10 s.d. 15% jika basah/kotor), kardus & kertas kering",
         timestamp: "Studi Literatur",
         updated_at: 1793002500000,
         riwayat: [
@@ -675,7 +683,7 @@
       }
     ];
 
-    const STORAGE_KEY = "papan_sampah_banyumas_v9";
+    const STORAGE_KEY = "papan_sampah_banyumas_v10";
     // ZERO-SECRET CLOUD SYNC: Hanya memanggil endpoint serverless proxy Google Apps Script
     // Tanpa mengekspos Google Cloud API Key (AIza...) maupun Spreadsheet ID di sisi klien.
     const CLOUD_CONFIG = {
@@ -1051,26 +1059,40 @@
       }
     }
 
-    // WHATSAPP DUA ARAH DENGAN HANDSHAKE BAKU
+    // WHATSAPP DUA ARAH DENGAN HANDSHAKE BAKU & ANTI-SPAM DETEKSI KONTAK (RATE-LIMIT 24 JAM PER PERANGKAT)
+    const LEAD_COOLDOWN_MS = 24 * 60 * 60 * 1000;
+
     function handleHubungiWA(id) {
       const lapak = lapakList.find(l => l.id === id);
       if (!lapak) return;
 
-      lapak.leads = (lapak.leads || 0) + 1;
-      saveData();
-      renderLapakList();
+      const leadKey = `lead_${id}`;
+      const alreadyCounted = hasDeviceActed(leadKey, LEAD_COOLDOWN_MS);
+      if (!alreadyCounted) {
+        markDeviceActed(leadKey);
+        lapak.leads = (lapak.leads || 0) + 1;
+        saveData();
+        renderLapakList();
+        showToast("Membuka WhatsApp lapak...");
+      } else {
+        showToast("Membuka WhatsApp (kontak dari perangkat ini sudah tercatat).");
+      }
 
       const pesan = encodeURIComponent(`Halo ${lapak.nama}, saya menemukan nomor ini di Papan Harga Sampah Banyumas. Apakah benar ini lapak rongsok aktif dan patokan harga kardus Rp${lapak.harga.kardus}/kg masih berlaku? Terima kasih.`);
       const url = `https://wa.me/${lapak.wa}?text=${pesan}`;
       window.open(url, '_blank');
-      showToast("Membuka WhatsApp lapak...");
     }
 
-    // 1-KLIK KONFIRMASI HARGA (DENGAN RATE-LIMIT PER PERANGKAT)
-    function hasDeviceActed(actionKey) {
+    // 1-KLIK KONFIRMASI HARGA & PROTEKSI RATE-LIMIT PER PERANGKAT
+    function hasDeviceActed(actionKey, cooldownMs = 0) {
       try {
         const logs = JSON.parse(localStorage.getItem("papan_sampah_device_actions") || "{}");
-        return !!logs[actionKey];
+        const ts = logs[actionKey];
+        if (!ts) return false;
+        if (cooldownMs > 0) {
+          return (Date.now() - ts) < cooldownMs;
+        }
+        return true;
       } catch (e) { return false; }
     }
 
@@ -1186,7 +1208,7 @@
       };
       const [min, max] = limits[komoditas];
       if (hargaBaru < min || hargaBaru > max) {
-        alert(`Harga di luar batas wajar pasar Banyumas (Rp${min.toLocaleString()} - Rp${max.toLocaleString()}).`);
+        alert(`Harga di luar batas wajar pasar Banyumas (Rp${min.toLocaleString()} s.d. Rp${max.toLocaleString()}).`);
         return;
       }
 
@@ -1297,11 +1319,11 @@
       if (mode === 'pcs') {
         btnPcs.className = "px-2 py-0.5 rounded-md text-[11px] font-bold bg-white text-emerald-800 shadow-2xs transition";
         btnKg.className = "px-2 py-0.5 rounded-md text-[11px] font-semibold text-slate-700 hover:text-slate-900 transition";
-        if (unitLabel) unitLabel.innerText = "Rp3.400–3.600 / kg (~25 botol/kg)";
+        if (unitLabel) unitLabel.innerText = "Rp3.400 s.d. Rp3.600 / kg (~25 botol/kg)";
       } else {
         btnKg.className = "px-2 py-0.5 rounded-md text-[11px] font-bold bg-white text-emerald-800 shadow-2xs transition";
         btnPcs.className = "px-2 py-0.5 rounded-md text-[11px] font-semibold text-slate-700 hover:text-slate-900 transition";
-        if (unitLabel) unitLabel.innerText = "Rp3.400–3.600 / kg (input berat kg)";
+        if (unitLabel) unitLabel.innerText = "Rp3.400 s.d. Rp3.600 / kg (input berat kg)";
       }
       calculateEstimasi();
     }
@@ -1437,18 +1459,25 @@
       if (kalengKg > 0) items.push(`Kaleng ${kalengKg}kg`);
       if (kertasKg > 0) items.push(`Kertas/Buku ${kertasKg}kg`);
 
-      selectedBestLapak.leads = (selectedBestLapak.leads || 0) + 1;
-      saveData();
-      renderLapakList();
+      const leadKey = `lead_${selectedBestLapak.id}`;
+      const alreadyCounted = hasDeviceActed(leadKey, LEAD_COOLDOWN_MS);
+      if (!alreadyCounted) {
+        markDeviceActed(leadKey);
+        selectedBestLapak.leads = (selectedBestLapak.leads || 0) + 1;
+        saveData();
+        renderLapakList();
+        showToast("Membuka WhatsApp dengan rincian kalkulator...");
+      } else {
+        showToast("Membuka WhatsApp (kontak dari perangkat ini sudah tercatat).");
+      }
 
       const minJemput = selectedBestLapak.min_jemput || 0;
       const statusJemput = selectedBestLapak.jemput
-        ? (totalWeight >= minJemput ? `Mohon jadwal jemput ke lokasi (total ${totalWeight.toFixed(1)}kg ≥ min. ${minJemput}kg).` : `Saya siap setor langsung ke lokasi atau gabung kolektif kos/RT (total saat ini ${totalWeight.toFixed(1)}kg).`)
+        ? (totalWeight >= minJemput ? `Mohon jadwal jemput ke lokasi (total ${totalWeight.toFixed(1)}kg >= min. ${minJemput}kg).` : `Saya siap setor langsung ke lokasi atau gabung kolektif kos/RT (total saat ini ${totalWeight.toFixed(1)}kg).`)
         : `Saya siap setor langsung ke lokasi lapak.`;
 
       const pesan = encodeURIComponent(`Halo ${selectedBestLapak.nama}, saya menghitung simulasi di Papan Harga Sampah Banyumas:\n- Rincian: ${items.join(', ')}\n- Estimasi Total: ${totalRp} (${totalWeight.toFixed(1)} kg)\n${statusJemput} Apakah harga tersebut masih berlaku? Terima kasih.`);
       window.open(`https://wa.me/${selectedBestLapak.wa}?text=${pesan}`, '_blank');
-      showToast("Membuka WhatsApp dengan rincian kalkulator...");
     }
 
     // MODAL CONTROLS
